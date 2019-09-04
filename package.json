@@ -1,14 +1,50 @@
 {
   "name": "teeshirtshop",
   "version": "1.0.0",
-  "description": "Ecommerce site for tee shirts",
-  "main": "app/src/server/index.js",
+  "description": "Full Stack Ecommerce App for teeshirts",
+  "main": "src/server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "start": "npm run build && node src/server/index.js",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "server": "nodemon src/server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devonyu/turing-fullstack.git"
+  "author": "Devon Yu",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.4.0",
+    "@material-ui/icons": "^4.2.1",
+    "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.16.3",
+    "mysql": "^2.17.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.0",
+    "babel-loader": "^8.0.0",
+    "clean-webpack-plugin": "^1.0.0",
+    "concurrently": "^4.0.0",
+    "css-loader": "^2.0.0",
+    "eslint": "^5.0.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.17.3",
+    "style-loader": "^0.23.0",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.3"
   },
   "keywords": [
     "fullstack",
@@ -18,10 +54,12 @@
     "nodejs",
     "turing"
   ],
-  "author": "devon yu",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/devonyu/turing-fullstack/issues"
   },
-  "homepage": "https://github.com/devonyu/turing-fullstack#readme"
+  "homepage": "https://github.com/devonyu/turing-fullstack#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devonyu/turing-fullstack.git"
+  }
 }
