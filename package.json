@@ -1,0 +1,27 @@
+{
+  "name": "teeshirtshop",
+  "version": "1.0.0",
+  "description": "Ecommerce site for tee shirts",
+  "main": "app/src/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devonyu/turing-fullstack.git"
+  },
+  "keywords": [
+    "fullstack",
+    "ecommerce",
+    "javascript",
+    "react",
+    "nodejs",
+    "turing"
+  ],
+  "author": "devon yu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devonyu/turing-fullstack/issues"
+  },
+  "homepage": "https://github.com/devonyu/turing-fullstack#readme"
+}
