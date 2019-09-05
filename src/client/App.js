@@ -1,29 +1,32 @@
-import React, { Component } from "react";
-import "./app.css";
-import NavBar from "./components/NavBar";
-import ProductList from "./components/ProductList";
+import React, { Component } from 'react';
+import './app.css';
+import Main from './components/Main';
 
 export default class App extends Component {
-  state = { username: null };
+  state = { username: null, categories: null, departments: null };
 
   componentDidMount() {
-    fetch("/api/getUsername")
+    fetch('/api/getUsername')
       .then(res => res.json())
       .then(username => this.setState({ username }));
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then(categories => this.setState({ categories }));
+    fetch('/api/departments')
+      .then(res => res.json())
+      .then(departments => this.setState({ departments }));
   }
 
   render() {
-    const { username } = this.state;
-    console.log(username);
+    const { categories, departments, username } = this.state;
+    console.log(username, departments, categories);
     return (
       <div>
-        <NavBar />
-        {username ? (
-          <h1>Welcome back, {username.username}!</h1>
-        ) : (
-          <h1>Loading Username...</h1>
-        )}
-        <ProductList />
+        <Main
+          username={username}
+          categories={categories}
+          departments={departments}
+        />
       </div>
     );
   }
