@@ -9,10 +9,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import ProductList from './ProductList';
 
 const drawerWidth = 240;
@@ -49,7 +46,19 @@ export default function Main(props) {
   const { categories, departments, username } = props;
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
+  const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
+  const [selectedCategoryIndex, setSelectedIndexCategory] = useState(null);
+
   console.log('insidemain => ', departments);
+
+  function handleListItemClick(event, index, type) {
+    console.log(index);
+    if (type === 'department') {
+      setSelectedIndexDepartment(index);
+    } else {
+      setSelectedIndexCategory(index);
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -79,14 +88,17 @@ export default function Main(props) {
         <List>
           <ListItemText primary="Department" />
           {departments != null
-            && departments.map(department => (
-              <ListItem button key={department.department_id}>
-                <ListItemText
-                  primary={department.name}
-                  onClick={() => {
-                    toggleDepartment(department.department_id);
-                  }}
-                />
+            && departments.map((department, index) => (
+              <ListItem
+                button
+                key={department.department_id}
+                selected={selectedDepartmentIndex === index}
+                onClick={(event) => {
+                  toggleDepartment(department.department_id);
+                  handleListItemClick(event, index, 'department');
+                }}
+              >
+                <ListItemText primary={department.name} />
               </ListItem>
             ))}
         </List>
@@ -96,8 +108,16 @@ export default function Main(props) {
           {categories != null
             && categories
               .filter(category => category.department_id === selectedDepartment)
-              .map(category => (
-                <ListItem button key={category.category_id}>
+              .map((category, index) => (
+                <ListItem
+                  button
+                  key={category.category_id}
+                  selected={selectedCategoryIndex === index}
+                  onClick={(event) => {
+                    toggleCategory(category.category_id);
+                    handleListItemClick(event, index, 'category');
+                  }}
+                >
                   <ListItemText
                     primary={category.name}
                     onClick={() => {
