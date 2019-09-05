@@ -10,7 +10,9 @@ import React, { useState } from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+
 import ProductList from "./ProductList";
+import CartSideItem from "./CartSideItem";
 
 const drawerWidth = 240;
 
@@ -134,7 +136,7 @@ export default function Main(props) {
                   key={product.product_id}
                   onClick={console.log("cart item clicked")}
                 >
-                  <ListItemText primary={product.name} />
+                  <CartSideItem data={product} />
                 </ListItem>
               ))
             : "Cart Empty"}
