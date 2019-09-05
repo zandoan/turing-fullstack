@@ -24,9 +24,29 @@ connection.query('SELECT 1 + 1 AS solution', (err, rows, fields) => {
 const app = express();
 
 app.use(express.static('dist'));
+
+// Example API
 app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
+
+// Get All products
 app.get('/api/products', (req, res) => {
   connection.query('SELECT * from product;', (err, rows, fields) => {
+    if (err) throw err;
+    res.json(rows);
+  });
+});
+
+// Get Categories
+app.get('/api/categories', (req, res) => {
+  connection.query('SELECT * from category;', (err, rows, fields) => {
+    if (err) throw err;
+    res.json(rows);
+  });
+});
+
+// Get Departments
+app.get('/api/departments', (req, res) => {
+  connection.query('SELECT * from department;', (err, rows, fields) => {
     if (err) throw err;
     res.json(rows);
   });
