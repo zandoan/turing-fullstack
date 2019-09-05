@@ -10,7 +10,9 @@ import React, { useState } from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+
 import ProductList from "./ProductList";
+import CartSideItem from "./CartSideItem";
 
 const drawerWidth = 240;
 
@@ -43,16 +45,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Main(props) {
   const classes = useStyles();
-  const { categories, departments, username } = props;
+  const { cart, categories, departments, onAddToCart, username } = props;
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
   const [selectedCategoryIndex, setSelectedIndexCategory] = useState(null);
 
-  console.log("insidemain => ", departments);
-
   function handleListItemClick(event, index, type) {
-    console.log(index);
     if (type === "department") {
       setSelectedIndexDepartment(index);
     } else {
@@ -127,6 +126,21 @@ export default function Main(props) {
                 </ListItem>
               ))}
         </List>
+        <Divider />
+        <List>
+          <ListItemText primary="Cart" />
+          {cart.length
+            ? cart.map((product, index) => (
+                <ListItem
+                  button
+                  key={product.product_id}
+                  onClick={console.log("cart item clicked")}
+                >
+                  <CartSideItem data={product} />
+                </ListItem>
+              ))
+            : "Cart Empty"}
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
@@ -138,7 +152,7 @@ export default function Main(props) {
         ) : (
           <h1>Loading Username...</h1>
         )}
-        <ProductList />
+        <ProductList onAddToCart={onAddToCart} />
       </main>
     </div>
   );
