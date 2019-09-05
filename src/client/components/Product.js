@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 export default function Product(props) {
   const classes = useStyles();
   const [showModal, toggleModal] = useState(false);
+  const { data } = props;
 
   function handleToggleModal() {
     toggleModal(!showModal);
@@ -32,24 +33,24 @@ export default function Product(props) {
         <CardActionArea>
           <CardMedia
             component="img"
-            alt={props.data.name}
+            alt={data.name}
             height="240"
             image={require(`../product_images/${props.data.image}`)}
-            title={props.data.name}
+            title={data.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.data.name}
+              {data.name}
             </Typography>
-            {props.data.discounted_price !== 0
-              ? `Sale: $${props.data.discounted_price} vs $${props.data.price}`
-              : `$${props.data.price}`}
+            {data.discounted_price !== 0
+              ? `Sale: $${data.discounted_price} vs $${data.price}`
+              : `$${data.price}`}
           </CardContent>
         </CardActionArea>
       </ButtonBase>
       {showModal ? (
         <ProductModal
-          data={props.data}
+          data={data}
           toggleModal={() => {
             handleToggleModal();
           }}

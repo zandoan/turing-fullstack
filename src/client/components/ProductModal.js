@@ -1,8 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { makeStyles } from '@material-ui/core/styles';
+import DialogContent from '@material-ui/core/DialogContent';
+import ProductDetail from './ProductDetail';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -11,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   paper: {
+    position: 'absolute',
+    width: '75%',
+    height: '75%',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -21,40 +26,28 @@ const useStyles = makeStyles(theme => ({
 export default function ProductModal(props) {
   const classes = useStyles();
   const { data, toggleModal } = props;
-
   const handleClose = () => {
     toggleModal();
   };
 
   return (
-    <div>
+    <>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
         open
         onClose={handleClose}
+        className={classes.modal}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500
         }}
       >
-        <Fade in>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">
-              {data.name}
-              {data.description}
-              {data.price}
-              {data.discounted_price}
-              {data.image}
-              {data.image_2}
-              {data.thumbnail}
-            </p>
-          </div>
-        </Fade>
+        <DialogContent className={classes.paper}>
+          <Fade>
+            <ProductDetail data={data} />
+          </Fade>
+        </DialogContent>
       </Modal>
-    </div>
+    </>
   );
 }
