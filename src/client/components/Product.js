@@ -35,7 +35,7 @@ export default function Product(props) {
             component="img"
             alt={data.name}
             height="240"
-            image={require(`../product_images/${props.data.image}`)}
+            image={require(`../product_images/${data.image}`)}
             title={data.name}
           />
           <CardContent>

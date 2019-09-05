@@ -10,6 +10,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   discount: {
+    color: "red"
+  },
+  original: {
     textDecoration: "line-through"
   }
 }));
@@ -65,25 +68,22 @@ const ProductDetail = forwardRef((props, ref) => {
                   <Typography gutterBottom variant="h5" component="h2">
                     {data.name}
                   </Typography>
-                  {data.discounted_price !== 0
-                    ? "Do this"
-                    : "show original price"}
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Original Price ${data.price}
-                  </Typography>
-                  <h3 className={classes.discount}>
-                    Sale Price
-                    {data.discounted_price}
-                  </h3>
-                  <Typography gutterBottom variant="p">
+                  {data.discounted_price !== 0 ? (
+                    <>
+                      <h2 className={classes.discount}>
+                        ON SALE for ${data.discounted_price}
+                      </h2>
+                      <h3 className={classes.original}>${data.price}</h3>
+                    </>
+                  ) : (
+                    <h2>${data.price}</h2>
+                  )}
+                  <Typography gutterBottom variant="body1">
                     {data.description}
                   </Typography>
                   <>Quantitity Selector</>
-
                   <>Size Selector</>
-
                   <>Color Selector</>
-
                   <>Add to cart</>
                 </CardContent>
               </Card>

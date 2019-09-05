@@ -22,7 +22,7 @@ export default function NavBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Turo Tee Shop
+            TShirtShop2
           </Typography>
           <Button color="inherit">Login / Signup</Button>
         </Toolbar>
