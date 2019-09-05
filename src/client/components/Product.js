@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Typography from '@material-ui/core/Typography';
+import ProductModal from './ProductModal';
 
 const useStyles = makeStyles({
   card: {
@@ -17,35 +17,45 @@ const useStyles = makeStyles({
 export default function Product(props) {
   const classes = useStyles();
   const [showModal, toggleModal] = useState(false);
+  const { data } = props;
+
+  function handleToggleModal() {
+    toggleModal(!showModal);
+  }
+
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt={props.data.name}
-          height="240"
-          image={require(`../product_images/${props.data.image}`)}
-          title={props.data.name}
+    <Card className={classes.card} raised>
+      <ButtonBase
+        onClick={() => {
+          handleToggleModal();
+        }}
+      >
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt={data.name}
+            height="240"
+            image={require(`../product_images/${data.image}`)}
+            title={data.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {data.name}
+            </Typography>
+            {data.discounted_price !== 0
+              ? `Sale: $${data.discounted_price} vs $${data.price}`
+              : `$${data.price}`}
+          </CardContent>
+        </CardActionArea>
+      </ButtonBase>
+      {showModal ? (
+        <ProductModal
+          data={data}
+          toggleModal={() => {
+            handleToggleModal();
+          }}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.data.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.data.description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          ${props.data.price}
-        </Button>
-        <Button size="small" color="primary">
-          {props.data.discounted_price !== 0
-            ? `SALE PRICE: $${props.data.discounted_price}`
-            : ""}
-        </Button>
-      </CardActions>
+      ) : null}
     </Card>
   );
 }

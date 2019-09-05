@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import Grid from "@material-ui/core/Grid";
-import ReactImage from "../react.png";
-import Product from "./Product";
+import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
+import Product from './Product';
 
 export default class ProductList extends Component {
   state = { products: null };
 
   componentDidMount() {
-    fetch("/api/products")
+    fetch('/api/products')
       .then(res => res.json())
       .then(product => this.setState({ products: product }));
   }
@@ -19,7 +18,7 @@ export default class ProductList extends Component {
         <Grid container spacing={3}>
           {products ? (
             products.map(product => (
-              <Grid item s>
+              <Grid item s="true" key={product.product_id}>
                 <Product data={product} />
               </Grid>
             ))
@@ -27,7 +26,6 @@ export default class ProductList extends Component {
             <h1>Loading products.. please wait!</h1>
           )}
         </Grid>
-        <img src={ReactImage} alt="react" />
       </div>
     );
   }
