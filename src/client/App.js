@@ -27,8 +27,9 @@ export default class App extends Component {
   };
 
   onAddToCart = item => {
+    // console.log("APP LEVEL => Adding to cart , ", item);
     this.setState(state => {
-      const cart = state.list.concat(item);
+      const cart = state.cart.concat(item);
       return {
         cart
       };
@@ -47,7 +48,7 @@ export default class App extends Component {
 
   render() {
     const { cart, categories, departments, username } = this.state;
-    console.log(username, departments, categories);
+    // console.log(username, departments, categories, cart);
     return (
       <div>
         <Main

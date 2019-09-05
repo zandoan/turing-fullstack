@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 const ProductDetail = forwardRef((props, ref) => {
   const classes = useStyles();
-  const { data } = props;
+  const { data, onAddToCart } = props;
   const [image, toggleImage] = useState(data.image);
 
   function handleToggleImage(pick) {
@@ -84,7 +84,14 @@ const ProductDetail = forwardRef((props, ref) => {
                   <>Quantitity Selector</>
                   <>Size Selector</>
                   <>Color Selector</>
-                  <>Add to cart</>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onAddToCart(data);
+                    }}
+                  >
+                    Add to cart
+                  </button>
                 </CardContent>
               </Card>
             </Paper>

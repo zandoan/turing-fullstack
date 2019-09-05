@@ -3,7 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import Product from "./Product";
 
 export default class ProductList extends Component {
-  state = { products: null };
+  constructor(props) {
+    super(props);
+    this.state = { products: null };
+  }
 
   componentDidMount() {
     fetch("/api/products")
@@ -13,13 +16,14 @@ export default class ProductList extends Component {
 
   render() {
     const { products } = this.state;
+    const { onAddToCart } = this.props;
     return (
       <div>
         <Grid container spacing={3}>
           {products ? (
             products.map(product => (
               <Grid item s="true" key={product.product_id}>
-                <Product data={product} />
+                <Product data={product} onAddToCart={onAddToCart} />
               </Grid>
             ))
           ) : (

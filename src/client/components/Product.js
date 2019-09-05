@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 export default function Product(props) {
   const classes = useStyles();
   const [showModal, toggleModal] = useState(false);
-  const { data } = props;
+  const { data, onAddToCart } = props;
 
   function handleToggleModal() {
     toggleModal(!showModal);
@@ -62,6 +62,7 @@ export default function Product(props) {
           toggleModal={() => {
             handleToggleModal();
           }}
+          onAddToCart={onAddToCart}
         />
       ) : null}
     </Card>
