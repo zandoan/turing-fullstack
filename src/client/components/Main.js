@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ProductList from './ProductList';
+import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import React, { useState } from "react";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import ProductList from "./ProductList";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex'
+    display: "flex"
   },
   appBar: {
-    backgroundColor: '#0390C7',
+    backgroundColor: "#0390C7",
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth
   },
@@ -49,11 +49,11 @@ export default function Main(props) {
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
   const [selectedCategoryIndex, setSelectedIndexCategory] = useState(null);
 
-  console.log('insidemain => ', departments);
+  console.log("insidemain => ", departments);
 
   function handleListItemClick(event, index, type) {
     console.log(index);
-    if (type === 'department') {
+    if (type === "department") {
       setSelectedIndexDepartment(index);
     } else {
       setSelectedIndexCategory(index);
@@ -87,15 +87,15 @@ export default function Main(props) {
         Search Field Box
         <List>
           <ListItemText primary="Department" />
-          {departments != null
-            && departments.map((department, index) => (
+          {departments != null &&
+            departments.map((department, index) => (
               <ListItem
                 button
                 key={department.department_id}
                 selected={selectedDepartmentIndex === index}
-                onClick={(event) => {
+                onClick={event => {
                   toggleDepartment(department.department_id);
-                  handleListItemClick(event, index, 'department');
+                  handleListItemClick(event, index, "department");
                 }}
               >
                 <ListItemText primary={department.name} />
@@ -105,17 +105,17 @@ export default function Main(props) {
         <Divider />
         <List>
           <ListItemText primary="Category" />
-          {categories != null
-            && categories
+          {categories != null &&
+            categories
               .filter(category => category.department_id === selectedDepartment)
               .map((category, index) => (
                 <ListItem
                   button
                   key={category.category_id}
                   selected={selectedCategoryIndex === index}
-                  onClick={(event) => {
+                  onClick={event => {
                     toggleCategory(category.category_id);
-                    handleListItemClick(event, index, 'category');
+                    handleListItemClick(event, index, "category");
                   }}
                 >
                   <ListItemText

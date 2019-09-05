@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Product from './Product';
+import React, { Component } from "react";
+import Grid from "@material-ui/core/Grid";
+import Product from "./Product";
 
 export default class ProductList extends Component {
   state = { products: null };
 
   componentDidMount() {
-    fetch('/api/products')
+    fetch("/api/products")
       .then(res => res.json())
       .then(product => this.setState({ products: product }));
   }
