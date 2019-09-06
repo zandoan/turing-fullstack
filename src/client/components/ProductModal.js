@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 export default function ProductModal(props) {
   const classes = useStyles();
   const { data, onAddToCart, toggleModal } = props;
+
   const handleClose = () => {
     toggleModal();
   };
