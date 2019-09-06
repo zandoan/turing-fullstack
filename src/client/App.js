@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./app.css";
+import { connect } from "react-redux";
 import Main from "./components/Main";
 
-export default class App extends Component {
+class App extends Component {
   state = {
     username: null,
     categories: null,
-    departments: null,
-    cart: []
+    departments: null
   };
 
   componentDidMount() {
@@ -22,38 +22,22 @@ export default class App extends Component {
       .then(departments => this.setState({ departments }));
   }
 
-  onClearCart = () => {
-    this.setState({ cart: [] });
-  };
-
   onAddToCart = item => {
-    // console.log("APP LEVEL => Adding to cart , ", item);
-    this.setState(state => {
-      const cart = state.cart.concat(item);
-      return {
-        cart
-      };
-    });
-  };
-
-  onUpdateCart = () => {
-    // this.setState({ cart: [] });
-    console.log("update quantity for item");
-  };
-
-  onRemoveItemFromCart = () => {
-    // this.setState({ cart: [] });
-    console.log("delete item");
+    console.log("top level add to cart trigger =item => ", item);
+    this.props.addToCart(item);
+    console.log("CURRENT STATE");
+    console.log(this.props.state);
   };
 
   render() {
-    const { cart, categories, departments, username } = this.state;
-    // console.log(username, departments, categories, cart);
+    const { categories, departments, username } = this.state;
+    const { cart } = this.props;
+    console.log("APP LEVEL");
+    console.log(username, departments, categories, cart);
     return (
       <div>
         <Main
           username={username}
-          cart={cart}
           categories={categories}
           departments={departments}
           onAddToCart={item => {
@@ -64,3 +48,21 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = cart => {
+  return {
+    cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: item => dispatch({ type: "ADD", val: item }),
+    removeFromCart: () => dispatch({ type: "REMOVE" })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

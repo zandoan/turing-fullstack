@@ -11,6 +11,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { connect } from "react-redux";
 import ProductList from "./ProductList";
 import CartSideItem from "./CartSideItem";
 
@@ -43,13 +44,16 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar
 }));
 
-export default function Main(props) {
+const Main = props => {
   const classes = useStyles();
   const { cart, categories, departments, onAddToCart, username } = props;
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
   const [selectedCategoryIndex, setSelectedIndexCategory] = useState(null);
+
+  console.log("MAIN Props===>", props);
+  console.log("Main CART => ", cart);
 
   function handleListItemClick(event, index, type) {
     if (type === "department") {
@@ -129,7 +133,7 @@ export default function Main(props) {
         <Divider />
         <List>
           <ListItemText primary="Cart" />
-          {cart.length
+          {cart && cart.length
             ? cart.map((product, index) => (
                 <ListItem
                   button
@@ -156,4 +160,22 @@ export default function Main(props) {
       </main>
     </div>
   );
-}
+};
+
+const mapStateToProps = cart => {
+  return {
+    cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: () => dispatch({ type: "ADD" }),
+    removeFromCart: () => dispatch({ type: "REMOVE" })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

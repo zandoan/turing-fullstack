@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import React, { forwardRef, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   discount: {
