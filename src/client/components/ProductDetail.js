@@ -44,7 +44,7 @@ const ProductDetail = forwardRef((props, ref) => {
   const { data, handleClose, onAddToCart } = props;
   const [image, toggleImage] = useState(data.image);
   const [attributes, setAtrribute] = useState({
-    quantity: 0,
+    quantity: 1,
     size: "s",
     color: "white"
   });
@@ -151,7 +151,7 @@ const ProductDetail = forwardRef((props, ref) => {
                   <Button
                     className={classes.addToCart}
                     onClick={() => {
-                      onAddToCart(data);
+                      onAddToCart(data, attributes);
                       handleClose();
                     }}
                   >

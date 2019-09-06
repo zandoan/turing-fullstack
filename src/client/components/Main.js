@@ -59,9 +59,6 @@ const Main = props => {
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
   const [selectedCategoryIndex, setSelectedIndexCategory] = useState(null);
 
-  console.log("MAIN Props===>", props);
-  console.log("Main CART => ", cart);
-
   function handleListItemClick(event, index, type) {
     if (type === "department") {
       setSelectedIndexDepartment(index);
