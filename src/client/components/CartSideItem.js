@@ -7,7 +7,7 @@ import React from "react";
 
 export default function CartSideItem(props) {
   const { data, onRemoveFromCart } = props;
-
+  console.log(data);
   return (
     <Card raised height="50">
       <CardActionArea
