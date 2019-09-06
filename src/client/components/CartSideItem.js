@@ -1,15 +1,24 @@
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
-export default function CartSideItem(props) {
+const useStyles = makeStyles(theme => ({
+  removeItem: {
+    backgroundColor: "red",
+    width: "100%"
+  }
+}));
+
+const CartSideItem = props => {
+  const classes = useStyles();
   const { data, onRemoveFromCart } = props;
-  console.log(data);
   return (
-    <Card raised height="50">
+    <Card raised>
       <CardActionArea
         onClick={() => {
           console.log("cartsideitemclicked");
@@ -32,19 +41,22 @@ export default function CartSideItem(props) {
           ) : (
             <h4>${data.price}</h4>
           )}
-          QTY: 1, Color: Null, Size: M
+          QTY: {data.attributes.quantity}, Color: {data.attributes.color}, Size:
+          {data.attributes.size}
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <button
-          type="button"
+        <Button
+          className={classes.removeItem}
           onClick={() => {
             onRemoveFromCart(data);
           }}
         >
-          Remove
-        </button>
+          Remove Item
+        </Button>
       </CardActions>
     </Card>
   );
-}
+};
+
+export default CartSideItem;

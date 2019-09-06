@@ -22,11 +22,11 @@ class App extends Component {
       .then(departments => this.setState({ departments }));
   }
 
-  onAddToCart = item => {
-    console.log("top level add to cart trigger =item => ", item);
-    this.props.addToCart(item);
-    console.log("CURRENT STATE");
-    console.log(this.props.state);
+  onAddToCart = (item, attributes) => {
+    // console.log("top level add to cart trigger =item => ", item);
+    // console.log("top level add to cart trigger Atrributes => ", attributes);
+    const finalItem = { ...item, attributes };
+    this.props.addToCart(finalItem);
   };
 
   onRemoveFromCart = item => {
@@ -36,16 +36,16 @@ class App extends Component {
   render() {
     const { categories, departments, username } = this.state;
     const { cart } = this.props;
-    console.log("APP LEVEL");
-    console.log(username, departments, categories, cart);
+    // console.log("APP LEVEL");
+    // console.log(username, departments, categories, cart);
     return (
       <div>
         <Main
           username={username}
           categories={categories}
           departments={departments}
-          onAddToCart={item => {
-            this.onAddToCart(item);
+          onAddToCart={(item, attributes) => {
+            this.onAddToCart(item, attributes);
           }}
           onRemoveFromCart={item => {
             this.onRemoveFromCart(item);
