@@ -45,7 +45,11 @@ export default function ProductModal(props) {
       >
         <DialogContent className={classes.paper}>
           <Fade>
-            <ProductDetail data={data} onAddToCart={onAddToCart} />
+            <ProductDetail
+              data={data}
+              onAddToCart={onAddToCart}
+              handleClose={handleClose}
+            />
           </Fade>
         </DialogContent>
       </Modal>

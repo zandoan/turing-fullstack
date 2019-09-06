@@ -5,7 +5,7 @@
 const initialCart = [];
 
 const cartReducer = (state = initialCart, action) => {
-  const newCart = [...state];
+  let newCart = [...state];
   console.log(`Begin newState => ${JSON.stringify(newCart)}`);
   if (action.type === "ADD") {
     console.log("inside REDUCER");
@@ -13,9 +13,9 @@ const cartReducer = (state = initialCart, action) => {
     newCart.push(action.val);
     console.log("AFTER ACTIONS REDUCER, state ====== ", newCart);
   }
-  // if (action.type === "REMOVE") {
-  //   newState = newState.cart.filter(item => item.name !== action.val.name);
-  // }
+  if (action.type === "REMOVE") {
+    newCart = newCart.filter(item => item.name !== action.val.name);
+  }
 
   return newCart;
 };
