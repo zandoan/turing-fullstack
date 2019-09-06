@@ -1,21 +1,17 @@
-// const initialCart = {
-//   cart: []
-// };
+const nanoid = require("nanoid");
 
 const initialCart = [];
 
 const cartReducer = (state = initialCart, action) => {
-  const newCart = [...state];
-  console.log(`Begin newState => ${JSON.stringify(newCart)}`);
+  let newCart = [...state];
   if (action.type === "ADD") {
-    console.log("inside REDUCER");
-    console.log("adding val =>", action.val);
+    // Add CartItemID to item
+    action.val.cartItemID = nanoid();
     newCart.push(action.val);
-    console.log("AFTER ACTIONS REDUCER, state ====== ", newCart);
   }
-  // if (action.type === "REMOVE") {
-  //   newState = newState.cart.filter(item => item.name !== action.val.name);
-  // }
+  if (action.type === "REMOVE") {
+    newCart = newCart.filter(item => item.cartItemID !== action.val.cartItemID);
+  }
 
   return newCart;
 };

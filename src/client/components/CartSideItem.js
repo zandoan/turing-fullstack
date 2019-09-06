@@ -1,14 +1,15 @@
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import React from "react";
 
 export default function CartSideItem(props) {
-  const { data } = props;
-
+  const { data, onRemoveFromCart } = props;
+  console.log(data);
   return (
-    <Card raised height="40">
+    <Card raised height="50">
       <CardActionArea
         onClick={() => {
           console.log("cartsideitemclicked");
@@ -17,7 +18,7 @@ export default function CartSideItem(props) {
         <CardMedia
           component="img"
           alt={data.name}
-          height="100%"
+          height="80px"
           width="100%"
           image={require(`../product_images/${data.thumbnail}`)}
           title={data.name}
@@ -34,6 +35,16 @@ export default function CartSideItem(props) {
           QTY: 1, Color: Null, Size: M
         </CardContent>
       </CardActionArea>
+      <CardActions>
+        <button
+          type="button"
+          onClick={() => {
+            onRemoveFromCart(data);
+          }}
+        >
+          Remove
+        </button>
+      </CardActions>
     </Card>
   );
 }

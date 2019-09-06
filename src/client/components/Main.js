@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import ProductList from "./ProductList";
 import CartSideItem from "./CartSideItem";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,7 +46,14 @@ const useStyles = makeStyles(theme => ({
 
 const Main = props => {
   const classes = useStyles();
-  const { cart, categories, departments, onAddToCart, username } = props;
+  const {
+    cart,
+    categories,
+    departments,
+    onAddToCart,
+    onRemoveFromCart,
+    username
+  } = props;
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
@@ -58,7 +65,7 @@ const Main = props => {
   function handleListItemClick(event, index, type) {
     if (type === "department") {
       setSelectedIndexDepartment(index);
-    } else {
+    } else if (type === "category") {
       setSelectedIndexCategory(index);
     }
   }
@@ -138,9 +145,14 @@ const Main = props => {
                 <ListItem
                   button
                   key={product.product_id}
-                  onClick={console.log("cart item clicked")}
+                  onClick={() => {
+                    console.log("cart item clicked");
+                  }}
                 >
-                  <CartSideItem data={product} />
+                  <CartSideItem
+                    data={product}
+                    onRemoveFromCart={onRemoveFromCart}
+                  />
                 </ListItem>
               ))
             : "Cart Empty"}

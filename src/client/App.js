@@ -29,6 +29,10 @@ class App extends Component {
     console.log(this.props.state);
   };
 
+  onRemoveFromCart = item => {
+    this.props.removeFromCart(item);
+  };
+
   render() {
     const { categories, departments, username } = this.state;
     const { cart } = this.props;
@@ -42,6 +46,9 @@ class App extends Component {
           departments={departments}
           onAddToCart={item => {
             this.onAddToCart(item);
+          }}
+          onRemoveFromCart={item => {
+            this.onRemoveFromCart(item);
           }}
         />
       </div>
@@ -58,7 +65,7 @@ const mapStateToProps = cart => {
 const mapDispatchToProps = dispatch => {
   return {
     addToCart: item => dispatch({ type: "ADD", val: item }),
-    removeFromCart: () => dispatch({ type: "REMOVE" })
+    removeFromCart: item => dispatch({ type: "REMOVE", val: item })
   };
 };
 
