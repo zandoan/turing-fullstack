@@ -23,6 +23,10 @@ const useStyles = makeStyles(theme => ({
   addToCart: {
     backgroundColor: "red"
   },
+  mainImage: {
+    maxWidth: "100%",
+    maxHeight: "100%"
+  },
   thumbnailContainer: {
     width: "160px",
     display: "flex",
@@ -30,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   thumbnail: {
     width: "60px",
-    height: "80px",
+    height: "100%",
     margin: 10
   }
 }));
@@ -71,6 +75,7 @@ const ProductDetail = forwardRef((props, ref) => {
               <Card>
                 <CardContent>
                   <CardMedia
+                    className={classes.mainImage}
                     component="img"
                     alt={data.name}
                     image={require(`../product_images/${image}`)}
