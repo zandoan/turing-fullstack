@@ -3,11 +3,23 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import React from "react";
+import React, { useState } from "react";
 
 export default function CartSideItem(props) {
   const { data, onRemoveFromCart } = props;
-  console.log(data);
+
+  const [form, setValues] = useState({
+    quantitiy: 0,
+    color: null,
+    size: null
+  });
+
+  const updateValue = e => {
+    setValues({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
   return (
     <Card raised height="50">
       <CardActionArea
