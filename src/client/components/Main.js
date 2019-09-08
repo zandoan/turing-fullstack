@@ -54,6 +54,9 @@ const Main = props => {
     onRemoveFromCart,
     username
   } = props;
+  // console.log("INSIDE MAIN");
+  // console.log(departments);
+  // console.log(username);
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
@@ -160,7 +163,7 @@ const Main = props => {
         {username ? (
           <h1>
             Welcome back,
-            {username.username}
+            {username}
           </h1>
         ) : (
           <h1>Loading Username...</h1>

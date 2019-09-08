@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
 import Product from "./Product";
 
 export default class ProductList extends Component {
@@ -9,9 +10,9 @@ export default class ProductList extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/products")
-      .then(res => res.json())
-      .then(product => this.setState({ products: product }));
+    axios.get("/api/products").then(products => {
+      this.setState({ products: products.data });
+    });
   }
 
   render() {

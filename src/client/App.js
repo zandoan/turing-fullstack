@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./app.css";
 import { connect } from "react-redux";
+import axios from "axios";
 import Main from "./components/Main";
 
 class App extends Component {
@@ -11,15 +12,20 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("/api/getUsername")
-      .then(res => res.json())
-      .then(username => this.setState({ username }));
-    fetch("/api/categories")
-      .then(res => res.json())
-      .then(categories => this.setState({ categories }));
-    fetch("/api/departments")
-      .then(res => res.json())
-      .then(departments => this.setState({ departments }));
+    Promise.all([
+      axios.get("/api/getUsername"),
+      axios.get("/api/categories"),
+      axios.get("/api/departments")
+    ]).then(([res1, res2, res3]) => {
+      // console.log(res1.data.username);
+      // console.log(res2.data);
+      // console.log(res3.data);
+      this.setState({
+        categories: res2.data,
+        departments: res3.data,
+        username: res1.data.username
+      });
+    });
   }
 
   onAddToCart = (item, attributes) => {
