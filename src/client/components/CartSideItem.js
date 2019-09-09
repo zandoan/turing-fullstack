@@ -21,7 +21,7 @@ const CartSideItem = props => {
     <Card raised>
       <CardActionArea
         onClick={() => {
-          console.log("cartsideitemclicked");
+          console.log("Will open modal to edit current item");
         }}
       >
         <CardMedia
