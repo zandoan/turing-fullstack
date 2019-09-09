@@ -48,16 +48,17 @@ const Main = props => {
   const classes = useStyles();
   const {
     cart,
+    cartID,
     categories,
     departments,
     onAddToCart,
     onRemoveFromCart,
+    total,
     username
   } = props;
-  console.log("INSIDE MAIN");
-  // console.log(departments);
-  // console.log(username);
-  console.log(cart);
+  // console.log("INSIDE MAIN");
+  // console.log(cart);
+  // console.log(total);
 
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
@@ -143,15 +144,15 @@ const Main = props => {
         <List>
           <ListItemText
             primary="Cart"
-            secondary={cart.total !== 0 ? `Total: $${cart.total}` : null}
+            secondary={total !== 0 ? `Total: $${total}` : null}
           />
-          {cart.cart && cart.cart.length
-            ? cart.cart.map((product, index) => (
+          {cart && cart.length
+            ? cart.map((product, index) => (
                 <ListItem
                   button
                   key={product.cartItemID}
                   onClick={() => {
-                    console.log("cart item clicked");
+                    console.log(`${product.name} cliked`);
                   }}
                 >
                   <CartSideItem
@@ -179,20 +180,15 @@ const Main = props => {
   );
 };
 
-const mapStateToProps = cart => {
+const mapStateToProps = state => {
   return {
-    cart
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addToCart: () => dispatch({ type: "ADD" }),
-    removeFromCart: () => dispatch({ type: "REMOVE" })
+    cart: state.cart,
+    cartID: state.cartID,
+    total: state.total
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Main);

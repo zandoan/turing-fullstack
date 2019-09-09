@@ -1,9 +1,4 @@
-import {
-  createSession,
-  clearSession,
-  updateSession,
-  getSession
-} from "../utils/localstorage";
+import { updateSession, getSessionCart } from "../utils/localstorage";
 
 const nanoid = require("nanoid");
 
@@ -11,7 +6,15 @@ const initialCart = { cart: [], total: 0, cartID: null };
 
 const cartReducer = (state = initialCart, action) => {
   let { total } = state;
-  console.log(total);
+
+  if (action.type === "LOADSESSION") {
+    const sessionCart = getSessionCart(action.id);
+    return {
+      ...state,
+      ...sessionCart
+    };
+  }
+
   if (action.type === "ADD") {
     // Add CartItemID to item
     action.val.cartItemID = nanoid();
@@ -43,6 +46,12 @@ const cartReducer = (state = initialCart, action) => {
     } else {
       total -= action.val.price * action.val.attributes.quantity;
     }
+    updateSession(action.id, {
+      ...state,
+      cartID: action.id,
+      cart: [...newCart],
+      total: parseFloat(total.toFixed(2))
+    });
     return {
       ...state,
       cartID: action.id,

@@ -13,11 +13,20 @@ export const clearSession = () => {
 };
 
 export const updateSession = (id, data) => {
-  // const currentSession = ls.get("sessionID");
-  // const updatedSession = { ...currentSession, data };
-  ls.set("data", data);
+  const currentSession = ls.get("sessionID");
+  const updatedSession = { ...currentSession, ...data };
+  const updatedData = [updatedSession];
+  ls.set("data", updatedData);
 };
 
-export const getSession = () => {
-  return ls.get("sessionID");
+export const getSessionID = () => {
+  if (ls.get("sessionID")) {
+    return ls.get("sessionID").id;
+  }
+  return null;
+};
+
+export const getSessionCart = id => {
+  const sessionData = ls.get("data");
+  return sessionData.filter(data => data.id === id)[0];
 };

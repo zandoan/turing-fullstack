@@ -12,7 +12,6 @@ export default function SizeAttributeSelector(props) {
   function handleChange(event) {
     setValue(event.target.value);
     handleToggleAttribute("size", event.target.value);
-    // console.log(event.target.value);
   }
 
   return (
