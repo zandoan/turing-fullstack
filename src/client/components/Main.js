@@ -54,9 +54,11 @@ const Main = props => {
     onRemoveFromCart,
     username
   } = props;
-  // console.log("INSIDE MAIN");
+  console.log("INSIDE MAIN");
   // console.log(departments);
   // console.log(username);
+  console.log(cart);
+
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
@@ -141,29 +143,13 @@ const Main = props => {
         <List>
           <ListItemText
             primary="Cart"
-            secondary={
-              cart && cart.length
-                ? `Total: $${parseFloat(
-                    cart.reduce((total, item) => {
-                      console.log(cart);
-                      console.log(item.quantity);
-                      if (item.discounted_price !== 0) {
-                        return (
-                          total +
-                          item.discounted_price * item.attributes.quantity
-                        );
-                      }
-                      return total + item.price * item.attributes.quantity;
-                    }, 0)
-                  ).toFixed(2)}`
-                : null
-            }
+            secondary={cart.total !== 0 ? `Total: $${cart.total}` : null}
           />
-          {cart && cart.length
-            ? cart.map((product, index) => (
+          {cart.cart && cart.cart.length
+            ? cart.cart.map((product, index) => (
                 <ListItem
                   button
-                  key={product.product_id}
+                  key={product.cartItemID}
                   onClick={() => {
                     console.log("cart item clicked");
                   }}
@@ -174,7 +160,7 @@ const Main = props => {
                   />
                 </ListItem>
               ))
-            : "Cart Empty"}
+            : null}
         </List>
       </Drawer>
       <main className={classes.content}>
