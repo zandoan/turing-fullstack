@@ -145,10 +145,15 @@ const Main = props => {
               cart && cart.length
                 ? `Total: $${parseFloat(
                     cart.reduce((total, item) => {
+                      console.log(cart);
+                      console.log(item.quantity);
                       if (item.discounted_price !== 0) {
-                        return total + item.discounted_price;
+                        return (
+                          total +
+                          item.discounted_price * item.attributes.quantity
+                        );
                       }
-                      return total + item.price;
+                      return total + item.price * item.attributes.quantity;
                     }, 0)
                   ).toFixed(2)}`
                 : null
