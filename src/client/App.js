@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import "./app.css";
 import { connect } from "react-redux";
 import axios from "axios";
+// import ls from "local-storage";
 import Main from "./components/Main";
+import {
+  createSession,
+  clearSession,
+  updateSession,
+  getSession
+} from "./utils/localstorage";
+
+// const nanoid = require("nanoid");
 
 class App extends Component {
   state = {
@@ -26,13 +35,31 @@ class App extends Component {
         username: res1.data.username
       });
     });
+    this.checkSession();
   }
+
+  checkSession = () => {
+    if (getSession()) {
+      console.log("theres a session bro");
+      console.log(getSession());
+    } else {
+      console.log("no session yet");
+    }
+  };
 
   onAddToCart = (item, attributes) => {
     // console.log("top level add to cart trigger =item => ", item);
     // console.log("top level add to cart trigger Atrributes => ", attributes);
+    let cartID;
+    if (getSession()) {
+      console.log(getSession());
+      cartID = getSession();
+    } else {
+      cartID = createSession();
+    }
     const finalItem = { ...item, attributes };
-    this.props.addToCart(finalItem);
+
+    this.props.addToCart(finalItem, cartID);
   };
 
   onRemoveFromCart = item => {
@@ -70,7 +97,7 @@ const mapStateToProps = cart => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addToCart: item => dispatch({ type: "ADD", val: item }),
+    addToCart: (item, id) => dispatch({ type: "ADD", val: item, id }),
     removeFromCart: item => dispatch({ type: "REMOVE", val: item })
   };
 };
