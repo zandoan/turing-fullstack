@@ -139,7 +139,21 @@ const Main = props => {
         </List>
         <Divider />
         <List>
-          <ListItemText primary="Cart" />
+          <ListItemText
+            primary="Cart"
+            secondary={
+              cart && cart.length
+                ? `Total: $${parseFloat(
+                    cart.reduce((total, item) => {
+                      if (item.discounted_price !== 0) {
+                        return total + item.discounted_price;
+                      }
+                      return total + item.price;
+                    }, 0)
+                  ).toFixed(2)}`
+                : null
+            }
+          />
           {cart && cart.length
             ? cart.map((product, index) => (
                 <ListItem
