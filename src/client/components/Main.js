@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import ProductList from "./ProductList";
 import CartSideItem from "./CartSideItem";
+import Cart from "./Cart";
 
 const drawerWidth = 200;
 
@@ -59,7 +60,7 @@ const Main = props => {
   // console.log("INSIDE MAIN");
   // console.log(cart);
   // console.log(total);
-
+  const [view, toggleView] = useState("Products");
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
   const [selectedDepartmentIndex, setSelectedIndexDepartment] = useState(null);
@@ -73,6 +74,15 @@ const Main = props => {
     }
   }
 
+  function handleToggleView() {
+    if (view === "Products") {
+      toggleView("Cart");
+    }
+    if (view === "Cart") {
+      toggleView("Products");
+    }
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -81,6 +91,13 @@ const Main = props => {
           <Typography variant="h6" className={classes.title}>
             TShirtShop2
           </Typography>
+          <Button
+            onClick={() => {
+              handleToggleView();
+            }}
+          >
+            Cart
+          </Button>
           <Button color="inherit">Login / Signup</Button>
         </Toolbar>
       </AppBar>
@@ -145,6 +162,9 @@ const Main = props => {
           <ListItemText
             primary="Cart"
             secondary={total !== 0 ? `Total: $${total}` : null}
+            onClick={() => {
+              handleToggleView();
+            }}
           />
           {cart && cart.length
             ? cart.map((product, index) => (
@@ -174,7 +194,11 @@ const Main = props => {
         ) : (
           <h1>Loading Username...</h1>
         )}
-        <ProductList onAddToCart={onAddToCart} />
+        {view === "Products" ? (
+          <ProductList onAddToCart={onAddToCart} />
+        ) : (
+          <Cart />
+        )}
       </main>
     </div>
   );
