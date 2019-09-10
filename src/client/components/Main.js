@@ -74,14 +74,14 @@ const Main = props => {
     }
   }
 
-  function handleToggleView() {
-    if (view === "Products") {
-      toggleView("Cart");
-    }
-    if (view === "Cart") {
+  function handleToggleView(nextView) {
+    if (nextView === "Products") {
       toggleView("Products");
     }
-    if (view === "Checkout") {
+    if (nextView === "Cart") {
+      toggleView("Cart");
+    }
+    if (nextView === "Checkout") {
       toggleView("Checkout");
     }
   }
