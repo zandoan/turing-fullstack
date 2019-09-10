@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ProductList from "./ProductList";
 import CartSideItem from "./CartSideItem";
 import Cart from "./Cart";
+import Checkout from "./Checkout";
 
 const drawerWidth = 200;
 
@@ -80,6 +81,23 @@ const Main = props => {
     if (view === "Cart") {
       toggleView("Products");
     }
+    if (view === "Checkout") {
+      toggleView("Checkout");
+    }
+  }
+
+  function displayView(currentView) {
+    return (
+      <>
+        {currentView === "Products" ? (
+          <ProductList onAddToCart={onAddToCart} />
+        ) : null}
+        {currentView === "Cart" ? <Cart toggleView={toggleView} /> : null}
+        {currentView === "Checkout" ? (
+          <Checkout toggleView={toggleView} />
+        ) : null}
+      </>
+    );
   }
 
   return (
@@ -92,10 +110,14 @@ const Main = props => {
           </Typography>
           <Button
             onClick={() => {
-              handleToggleView();
+              if (view === "Products") {
+                handleToggleView("Cart");
+              } else {
+                handleToggleView("Products");
+              }
             }}
           >
-            Cart
+            {view === "Products" ? "Cart" : "Products"}
           </Button>
           <Button color="inherit">Login / Signup</Button>
         </Toolbar>
@@ -163,7 +185,7 @@ const Main = props => {
             primary="Cart"
             secondary={total !== 0 ? `Total: $${total}` : null}
             onClick={() => {
-              handleToggleView();
+              handleToggleView("Cart");
             }}
           />
           {cart && cart.length
@@ -194,11 +216,7 @@ const Main = props => {
         ) : (
           <h1>Loading Username...</h1>
         )}
-        {view === "Products" ? (
-          <ProductList onAddToCart={onAddToCart} />
-        ) : (
-          <Cart />
-        )}
+        {displayView(view)}
       </main>
     </div>
   );
