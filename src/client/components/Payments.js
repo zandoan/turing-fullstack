@@ -9,7 +9,6 @@ const Payments = props => {
   return (
     <>
       <p>Payments Component</p>
-      2. Enter Payment Information
       <Grid container />
       <Button
         onClick={() => {

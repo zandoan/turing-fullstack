@@ -5,6 +5,11 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import CheckoutReview from "./CheckoutReview";
 import OrderSummary from "./OrderSummary";
@@ -26,6 +31,13 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     margin: theme.spacing(2, 0)
+  },
+  root: {
+    width: "100%"
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular
   }
 }));
 
@@ -71,9 +83,50 @@ const Checkout = props => {
       >
         <Grid item xs={8}>
           <Paper className={classes.paper}>
-            <Shipping checkout={checkout} />
-            <Payments checkout={checkout} />
-            <CheckoutReview checkout={checkout} />
+            <div className={classes.root}>
+              <ExpansionPanel>
+                <ExpansionPanelSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className={classes.heading}>
+                    1. Shipping Information
+                  </Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <Shipping checkout={checkout} />
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+              <ExpansionPanel>
+                <ExpansionPanelSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className={classes.heading}>
+                    2. Payment Information
+                  </Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <Payments checkout={checkout} />
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+              <ExpansionPanel>
+                <ExpansionPanelSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className={classes.heading}>
+                    3 Review Item Information
+                  </Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <CheckoutReview checkout={checkout} />
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+            </div>
           </Paper>
         </Grid>
         <Grid item xs={4}>

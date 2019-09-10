@@ -11,7 +11,6 @@ const CheckoutReview = props => {
   return (
     <>
       <p>Review Component</p>
-      3. Review Items and Place Order
       <Grid container />
       <Button
         onClick={() => {
