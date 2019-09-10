@@ -11,9 +11,9 @@ const checkout = (state = initialCheckoutData, action) => {
         address1: "1015 Folsom st",
         address2: "",
         city: "San Francisco",
+        zip: 94109,
         state: "California",
-        country: "US",
-        email: "devonyu415@gmail.com"
+        country: "US"
       }
     };
   }
