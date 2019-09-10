@@ -3,23 +3,23 @@ import Button from "@material-ui/core/Button";
 // import PropTypes from "prop-types";
 
 import Grid from "@material-ui/core/Grid";
-// payment information
+// Review Cart information and submit order
 
-const Payments = props => {
+const CheckoutReview = props => {
   return (
     <>
-      <p>Payments Component</p>
-      2. Enter Payment Information
+      <p>Review Component</p>
+      3. Review Items and Place Order
       <Grid container />
       <Button
         onClick={() => {
-          console.log("Payments confirmed");
+          console.log("place order");
         }}
       >
-        Confirm Payment
+        Place your order
       </Button>
     </>
   );
 };
 
-export default Payments;
+export default CheckoutReview;

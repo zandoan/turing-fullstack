@@ -43,9 +43,7 @@ const Cart = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addToCart: (item, id) => dispatch({ type: "ADD", val: item, id }),
     removeFromCart: item => dispatch({ type: "REMOVE", val: item }),
-    getCartFromSession: id => dispatch({ type: "LOADSESSION", id }),
     updateCart: (item, id) =>
       dispatch({ type: "UPDATE", val: item, cartItemID: id })
   };

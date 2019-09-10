@@ -94,7 +94,7 @@ const Main = props => {
         ) : null}
         {currentView === "Cart" ? <Cart toggleView={toggleView} /> : null}
         {currentView === "Checkout" ? (
-          <Checkout toggleView={toggleView} />
+          <Checkout toggleView={toggleView} cart={cart} total={total} />
         ) : null}
       </>
     );

@@ -3,10 +3,30 @@ import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Shipping from "./Shipping";
-import Payments from "./Payments";
+import CheckoutReview from "./CheckoutReview";
 import OrderSummary from "./OrderSummary";
+import Payments from "./Payments";
+import Shipping from "./Shipping";
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: "grid",
+    gridTemplateColumns: "repeat(12, 1fr)",
+    gridGap: theme.spacing(3)
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    whiteSpace: "nowrap",
+    marginBottom: theme.spacing(1)
+  },
+  divider: {
+    margin: theme.spacing(2, 0)
+  }
+}));
 
 // Use Amazon checkout as prototype
 // shipping information
@@ -18,23 +38,57 @@ import OrderSummary from "./OrderSummary";
 // on success, on fail - backend checks
 
 const Checkout = props => {
-  return (
-    <>
-      <Paper>
-        <h1>Checkout (x items)</h1>
-        <Grid container />
-        <Shipping />
-        <Payments />
-        <OrderSummary />
+  const classes = useStyles();
+  const { cart, total } = props;
+  console.log("CHECKOUT");
+  console.log(cart);
+
+  const cartItemAmount = () => {
+    return (
+      <h1>
+        Checkout (
         <Button
           onClick={() => {
             props.toggleView("Cart");
           }}
         >
-          Back to Cart
+          {(cart || []).length} items
         </Button>
-      </Paper>
-    </>
+        )
+      </h1>
+    );
+  };
+  return (
+    <Paper>
+      {cartItemAmount()}
+      <Grid
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="flex-start"
+        spacing={2}
+      >
+        <Grid item xs={8}>
+          <Paper className={classes.paper}>
+            <Shipping />
+            <Payments />
+            <CheckoutReview />
+          </Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            <OrderSummary cart={cart} total={total} />
+          </Paper>
+        </Grid>
+      </Grid>
+      <Button
+        onClick={() => {
+          props.toggleView("Cart");
+        }}
+      >
+        Back to Cart
+      </Button>
+    </Paper>
   );
 };
 

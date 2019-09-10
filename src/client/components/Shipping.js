@@ -9,6 +9,7 @@ const Shipping = props => {
   return (
     <>
       <p>Shipping Component</p>
+      1. Enter Shipping Information
       <Grid container />
       <Button
         onClick={() => {
