@@ -24,36 +24,15 @@ export default function SizeAttributeSelector(props) {
         onChange={handleChange}
         row
       >
-        <FormControlLabel
-          value="S"
-          control={<Radio color="primary" />}
-          label="S"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="M"
-          control={<Radio color="primary" />}
-          label="M"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="L"
-          control={<Radio color="primary" />}
-          label="L"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="XL"
-          control={<Radio color="primary" />}
-          label="XL"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="XXL"
-          control={<Radio color="primary" />}
-          label="XXL"
-          labelPlacement="bottom"
-        />
+        {["S", "M", "L", "XL", "XXL"].map(item => (
+          <FormControlLabel
+            value={item}
+            key={item}
+            control={<Radio color="primary" />}
+            label={item}
+            labelPlacement="bottom"
+          />
+        ))}
       </RadioGroup>
     </FormControl>
   );

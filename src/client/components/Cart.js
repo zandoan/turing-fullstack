@@ -6,10 +6,10 @@ import ListItem from "@material-ui/core/ListItem";
 import CartItem from "./CartItem";
 
 const Cart = props => {
-  console.log("INSIDE CART");
+  // console.log("INSIDE CART");
   const { cart, cartID, total, removeFromCart, updateCart } = props;
-  console.log(cart);
-  console.log(updateCart);
+  // console.log(cart);
+  // console.log(updateCart);
   return (
     <>
       <h1>Cart Items</h1>

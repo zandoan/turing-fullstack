@@ -12,7 +12,6 @@ export default function ColorAttributeSelector(props) {
   function handleChange(event) {
     setValue(event.target.value);
     handleToggleAttribute("color", event.target.value);
-    // console.log(event.target.value);
   }
 
   return (
@@ -25,60 +24,25 @@ export default function ColorAttributeSelector(props) {
         onChange={handleChange}
         row
       >
-        <FormControlLabel
-          value="White"
-          control={<Radio color="primary" />}
-          label="White"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Black"
-          control={<Radio color="primary" />}
-          label="Black"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Red"
-          control={<Radio color="primary" />}
-          label="Red"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Orange"
-          control={<Radio color="primary" />}
-          label="Orange"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Yellow"
-          control={<Radio color="primary" />}
-          label="Yellow"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Green"
-          control={<Radio color="primary" />}
-          label="Green"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Blue"
-          control={<Radio color="primary" />}
-          label="Blue"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Indigo"
-          control={<Radio color="primary" />}
-          label="Indigo"
-          labelPlacement="bottom"
-        />
-        <FormControlLabel
-          value="Purple"
-          control={<Radio color="primary" />}
-          label="Purple"
-          labelPlacement="bottom"
-        />
+        {[
+          "White",
+          "Black",
+          "Red",
+          "Orange",
+          "Yellow",
+          "Green",
+          "Blue",
+          "Indigo",
+          "Purple"
+        ].map(item => (
+          <FormControlLabel
+            key={item}
+            value={item}
+            control={<Radio color="primary" />}
+            label={item}
+            labelPlacement="bottom"
+          />
+        ))}
       </RadioGroup>
     </FormControl>
   );

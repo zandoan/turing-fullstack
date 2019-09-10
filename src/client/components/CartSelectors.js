@@ -5,12 +5,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 export default function CartSelectors(props) {
-  // console.log("CartSelectors props");
-  // console.log(props);
   const { color, quantity, size } = props.data.attributes;
   const { cartItemID } = props.data;
   const { onUpdateCart } = props;
-  // console.log(onUpdateCart);
   const [values, setValues] = React.useState({
     color,
     quantity,
@@ -23,10 +20,6 @@ export default function CartSelectors(props) {
       ...oldValues,
       [event.target.name]: event.target.value
     }));
-    // console.log("CHANGING!!!!!");
-    // console.log("target name => ", event.target.name);
-    // console.log("value => ", event.target.value);
-    // console.log(`cartItemID => `, cartItemID);
     onUpdateCart({ [event.target.name]: event.target.value }, cartItemID);
   }
 

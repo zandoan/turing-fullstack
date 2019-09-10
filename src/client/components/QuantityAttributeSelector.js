@@ -11,7 +11,6 @@ export default function QuantityAttributeSelector(props) {
   function handleChange(event) {
     setValue(event.target.value);
     handleToggleAttribute("quantity", event.target.value);
-    // console.log(event.target.value);
   }
 
   return (
