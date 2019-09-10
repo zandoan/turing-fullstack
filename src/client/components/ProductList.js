@@ -1,6 +1,8 @@
-import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import axios from "axios";
+
 import Product from "./Product";
 
 export default class ProductList extends Component {
@@ -35,3 +37,7 @@ export default class ProductList extends Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  onAddToCart: PropTypes.func.isRequired
+};

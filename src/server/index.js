@@ -6,6 +6,7 @@ dotenv.config();
 
 const mysql = require("mysql");
 
+// Connect to DEV SQL DBMS
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -15,10 +16,10 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query("SELECT 1 + 1 AS solution", (err, rows, fields) => {
+connection.query("SELECT 1 + 1 AS solution", (err, rows) => {
   if (err) throw err;
-
-  console.log("The solution is: ", rows[0].solution);
+  // eslint-disable-next-line no-console
+  console.log("Test Query for DB => The solution is: ", rows[0].solution);
 });
 
 const app = express();
@@ -32,7 +33,7 @@ app.get("/api/getUsername", (req, res) =>
 
 // Get All products
 app.get("/api/products", (req, res) => {
-  connection.query("SELECT * from product;", (err, rows, fields) => {
+  connection.query("SELECT * from product;", (err, rows) => {
     if (err) throw err;
     res.json(rows);
   });
@@ -40,7 +41,7 @@ app.get("/api/products", (req, res) => {
 
 // Get Categories
 app.get("/api/categories", (req, res) => {
-  connection.query("SELECT * from category;", (err, rows, fields) => {
+  connection.query("SELECT * from category;", (err, rows) => {
     if (err) throw err;
     res.json(rows);
   });
@@ -48,12 +49,13 @@ app.get("/api/categories", (req, res) => {
 
 // Get Departments
 app.get("/api/departments", (req, res) => {
-  connection.query("SELECT * from department;", (err, rows, fields) => {
+  connection.query("SELECT * from department;", (err, rows) => {
     if (err) throw err;
     res.json(rows);
   });
 });
 
 app.listen(process.env.PORT || 8080, () =>
+  // eslint-disable-next-line no-console
   console.log(`Listening on port ${process.env.PORT || 8080}!`)
 );

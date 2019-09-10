@@ -5,6 +5,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import PropTypes from "prop-types";
 import React, { forwardRef, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,7 +14,7 @@ import SizeAttributeSelector from "./SizeAttributeSelector";
 import ColorAttributeSelector from "./ColorAttributeSelector";
 import QuantityAttributeSelector from "./QuantityAttributeSelector";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   discount: {
     color: "red"
   },
@@ -78,6 +79,8 @@ const ProductDetail = forwardRef((props, ref) => {
                     className={classes.mainImage}
                     component="img"
                     alt={data.name}
+                    // eslint-disable-next-line max-len
+                    // eslint-disable-next-line import/no-dynamic-require,  global-require
                     image={require(`../product_images/${image}`)}
                   />
                   <div className={classes.thumbnailContainer}>
@@ -88,6 +91,8 @@ const ProductDetail = forwardRef((props, ref) => {
                         onClick={() => {
                           handleToggleImage(data.image);
                         }}
+                        // eslint-disable-next-line max-len
+                        // eslint-disable-next-line import/no-dynamic-require,  global-require
                         image={require(`../product_images/${data.image}`)}
                       />
                     </Card>
@@ -98,6 +103,8 @@ const ProductDetail = forwardRef((props, ref) => {
                         onClick={() => {
                           handleToggleImage(data.image_2);
                         }}
+                        // eslint-disable-next-line max-len
+                        // eslint-disable-next-line import/no-dynamic-require,  global-require
                         image={require(`../product_images/${data.image_2}`)}
                       />
                     </Card>
@@ -168,3 +175,16 @@ const ProductDetail = forwardRef((props, ref) => {
 });
 
 export default ProductDetail;
+
+ProductDetail.propTypes = {
+  data: PropTypes.shape({
+    image: PropTypes.string,
+    name: PropTypes.string,
+    image_2: PropTypes.string,
+    price: PropTypes.number,
+    discounted_price: PropTypes.number,
+    description: PropTypes.string
+  }).isRequired,
+  handleClose: PropTypes.func.isRequired,
+  onAddToCart: PropTypes.func.isRequired
+};

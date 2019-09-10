@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Backdrop from "@material-ui/core/Backdrop";
 import DialogContent from "@material-ui/core/DialogContent";
 import Fade from "@material-ui/core/Fade";
@@ -56,3 +57,9 @@ export default function ProductModal(props) {
     </>
   );
 }
+
+ProductModal.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+  onAddToCart: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired
+};

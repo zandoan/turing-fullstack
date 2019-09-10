@@ -2,9 +2,11 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+
 import ProductModal from "./ProductModal";
 
 const useStyles = makeStyles({
@@ -39,6 +41,7 @@ export default function Product(props) {
           component="img"
           alt={data.name}
           height="240"
+          // eslint-disable-next-line import/no-dynamic-require,  global-require
           image={require(`../product_images/${data.image}`)}
           title={data.name}
         />
@@ -68,3 +71,16 @@ export default function Product(props) {
     </Card>
   );
 }
+
+Product.propTypes = {
+  data: PropTypes.shape({
+    image: PropTypes.string,
+    name: PropTypes.string,
+    image_2: PropTypes.string,
+    price: PropTypes.number,
+    discounted_price: PropTypes.number,
+    description: PropTypes.string,
+    thumbnail: PropTypes.string
+  }).isRequired,
+  onAddToCart: PropTypes.func.isRequired
+};

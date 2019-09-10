@@ -1,5 +1,6 @@
 const { createStore } = require("redux");
 
+// Seeing how Redux works
 const initialState = {
   cart: []
 };
@@ -19,7 +20,7 @@ const myReducer = (state = initialState, action) => {
 
 const store = createStore(myReducer);
 store.subscribe(() => {
-  console.log("state changed! => ", JSON.stringify(store.getState()));
+  // console.log("state changed! => ", JSON.stringify(store.getState()));
 });
 
 store.dispatch({ type: "ADD", val: { name: "Picasso", price: 14.99 } });
@@ -27,4 +28,4 @@ store.dispatch({ type: "ADD", val: { name: "Van Ness", price: 33.99 } });
 store.dispatch({ type: "ADD", val: { name: "Palamo", price: 323.99 } });
 store.dispatch({ type: "REMOVE", val: { name: "Picasso" } });
 
-console.log(store.getState());
+// console.log(store.getState());

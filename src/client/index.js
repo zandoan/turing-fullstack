@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import cartReducer from "./store/cartReducer";
+
 import App from "./App";
+import cartReducer from "./store/cartReducer";
 
 const store = createStore(cartReducer);
 

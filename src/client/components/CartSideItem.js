@@ -4,10 +4,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import PropTypes from "prop-types";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   removeItem: {
     backgroundColor: "red",
     width: "100%"
@@ -29,6 +30,7 @@ const CartSideItem = props => {
           alt={data.name}
           height="80px"
           width="100%"
+          // eslint-disable-next-line import/no-dynamic-require, global-require
           image={require(`../product_images/${data.thumbnail}`)}
           title={data.name}
         />
@@ -60,3 +62,21 @@ const CartSideItem = props => {
 };
 
 export default CartSideItem;
+
+CartSideItem.propTypes = {
+  data: PropTypes.shape({
+    image: PropTypes.string,
+    name: PropTypes.string,
+    image_2: PropTypes.string,
+    price: PropTypes.number,
+    discounted_price: PropTypes.number,
+    description: PropTypes.string,
+    thumbnail: PropTypes.string,
+    attributes: PropTypes.shape({
+      quantity: PropTypes.number,
+      color: PropTypes.string,
+      size: PropTypes.string
+    })
+  }).isRequired,
+  onRemoveFromCart: PropTypes.func.isRequired
+};

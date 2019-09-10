@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
 import "./app.css";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import axios from "axios";
-import Main from "./components/Main";
+import { connect } from "react-redux";
 import { createSession, getSessionID } from "./utils/localstorage";
+
+import Main from "./components/Main";
 
 const sessionID = getSessionID();
 

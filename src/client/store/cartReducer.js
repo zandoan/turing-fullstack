@@ -16,8 +16,7 @@ const cartReducer = (state = initialCart, action) => {
   }
 
   if (action.type === "ADD") {
-    // Add CartItemID to item
-    action.val.cartItemID = nanoid();
+    const itemCopy = { ...action.val, cartItemID: nanoid() };
     if (action.val.discounted_price !== 0) {
       total += action.val.discounted_price * action.val.attributes.quantity;
     } else {
@@ -27,7 +26,7 @@ const cartReducer = (state = initialCart, action) => {
     updateSession(action.id, {
       ...state,
       cartID: action.id,
-      cart: [...state.cart, action.val],
+      cart: [...state.cart, itemCopy],
       total: parseFloat(total.toFixed(2))
     });
 
@@ -65,24 +64,31 @@ const cartReducer = (state = initialCart, action) => {
   }
 
   if (action.type === "UPDATE") {
-    const updatedCart = state.cart.map(item => {
+    const key = Object.keys(action.val)[0];
+    const val = Object.values(action.val)[0];
+    const updatedCart = [...state.cart].map(item => {
       if (item.cartItemID === action.cartItemID) {
-        const key = Object.keys(action.val)[0];
-        const val = Object.values(action.val)[0];
-        item.attributes[key] = val;
-        if (key === "quantity") {
-          total = state.cart.reduce((sum, cartItem) => {
-            const price =
-              cartItem.discounted_price !== 0
-                ? cartItem.discounted_price
-                : cartItem.price;
-            return sum + price * cartItem.attributes.quantity;
-          }, 0);
-        }
-        return { ...item };
+        const itemCopy = {
+          ...item,
+          attributes: {
+            ...item.attributes,
+            [key]: val
+          }
+        };
+        return itemCopy;
       }
       return item;
     });
+
+    if (key === "quantity") {
+      total = updatedCart.reduce((sum, cartItem) => {
+        const price =
+          cartItem.discounted_price !== 0
+            ? cartItem.discounted_price
+            : cartItem.price;
+        return sum + price * cartItem.attributes.quantity;
+      }, 0);
+    }
 
     updateSession(action.id, {
       ...state,

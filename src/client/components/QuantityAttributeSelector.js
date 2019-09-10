@@ -1,8 +1,9 @@
-import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import PropTypes from "prop-types";
+import React from "react";
+import Select from "@material-ui/core/Select";
 
 export default function QuantityAttributeSelector(props) {
   const [value, setValue] = React.useState(1);
@@ -18,7 +19,7 @@ export default function QuantityAttributeSelector(props) {
       <FormLabel component="legend">Quantity</FormLabel>
       <Select value={value} onChange={handleChange}>
         {[...Array(10).keys()].map((item, idx) => (
-          <MenuItem value={idx + 1} key={idx + 1}>
+          <MenuItem value={idx + 1} key={String(idx + 1)}>
             {idx + 1}
           </MenuItem>
         ))}
@@ -26,3 +27,7 @@ export default function QuantityAttributeSelector(props) {
     </FormControl>
   );
 }
+
+QuantityAttributeSelector.propTypes = {
+  handleToggleAttribute: PropTypes.func.isRequired
+};

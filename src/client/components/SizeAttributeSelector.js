@@ -1,9 +1,10 @@
-import React from "react";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
+import PropTypes from "prop-types";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import React from "react";
 
 export default function SizeAttributeSelector(props) {
   const [value, setValue] = React.useState("null");
@@ -37,3 +38,7 @@ export default function SizeAttributeSelector(props) {
     </FormControl>
   );
 }
+
+SizeAttributeSelector.propTypes = {
+  handleToggleAttribute: PropTypes.func.isRequired
+};

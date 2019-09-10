@@ -27,6 +27,6 @@ export const getSessionID = () => {
 };
 
 export const getSessionCart = id => {
-  const sessionData = ls.get("data");
+  const sessionData = ls.get("data") || [];
   return sessionData.filter(data => data.id === id)[0];
 };
