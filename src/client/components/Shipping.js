@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-// import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -17,7 +16,6 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   }
 }));
-// shipping information
 
 const Shipping = props => {
   const [shippingData, setShippingData] = React.useState({
