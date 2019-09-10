@@ -72,7 +72,6 @@ const cartReducer = (state = initialCart, action) => {
         item.attributes[key] = val;
         if (key === "quantity") {
           total = state.cart.reduce((sum, cartItem) => {
-            console.log(cartItem);
             const price =
               cartItem.discounted_price !== 0
                 ? cartItem.discounted_price

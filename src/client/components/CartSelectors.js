@@ -1,12 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 export default function CartSelectors(props) {
-  const { color, quantity, size } = props.data.attributes;
-  const { cartItemID } = props.data;
+  const { data } = props;
+  const { attributes } = data;
+  const { color, quantity, size } = attributes;
+  const { cartItemID } = data;
   const { onUpdateCart } = props;
   const [values, setValues] = React.useState({
     color,
@@ -77,7 +80,7 @@ export default function CartSelectors(props) {
           }}
         >
           {[...Array(10).keys()].map((item, idx) => (
-            <MenuItem value={idx + 1} key={idx + 1}>
+            <MenuItem value={idx + 1} key={String(idx + 1)}>
               {idx + 1}
             </MenuItem>
           ))}
@@ -86,3 +89,15 @@ export default function CartSelectors(props) {
     </form>
   );
 }
+
+CartSelectors.propTypes = {
+  data: PropTypes.shape({
+    cartItemID: PropTypes.string,
+    attributes: PropTypes.shape({
+      color: PropTypes.string,
+      quantity: PropTypes.number,
+      size: PropTypes.string
+    })
+  }).isRequired,
+  onUpdateCart: PropTypes.func.isRequired
+};

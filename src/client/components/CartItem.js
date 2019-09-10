@@ -1,5 +1,6 @@
 import Button from "@material-ui/core/Button";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -39,12 +40,12 @@ const useStyles = makeStyles(theme => ({
 
 const CartItem = props => {
   const classes = useStyles();
-  const theme = useTheme();
   const { data, onRemoveFromCart, onUpdateCart } = props;
   return (
     <Card raised className={classes.card}>
       <CardMedia
         className={classes.cover}
+        // require needed for webpack bundling
         image={require(`../product_images/${data.thumbnail}`)}
         title={data.name}
       />
@@ -78,3 +79,9 @@ const CartItem = props => {
 };
 
 export default CartItem;
+
+CartItem.propTypes = {
+  data: PropTypes.object.isRequired,
+  onRemoveFromCart: PropTypes.func.isRequired,
+  onUpdateCart: PropTypes.func.isRequired
+};

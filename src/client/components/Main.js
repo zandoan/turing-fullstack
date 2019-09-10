@@ -1,4 +1,5 @@
 import AppBar from "@material-ui/core/AppBar";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
@@ -49,7 +50,6 @@ const Main = props => {
   const classes = useStyles();
   const {
     cart,
-    cartID,
     categories,
     departments,
     onAddToCart,
@@ -57,9 +57,6 @@ const Main = props => {
     total,
     username
   } = props;
-  // console.log("INSIDE MAIN");
-  // console.log(cart);
-  // console.log(total);
   const [view, toggleView] = useState("Products");
   const [selectedDepartment, toggleDepartment] = useState(null);
   const [selectedCategory, toggleCategory] = useState(null);
@@ -167,12 +164,12 @@ const Main = props => {
             }}
           />
           {cart && cart.length
-            ? cart.map((product, index) => (
+            ? cart.map(product => (
                 <ListItem
                   button
                   key={product.cartItemID}
                   onClick={() => {
-                    console.log(`${product.name} cliked`);
+                    // console.log(`${product.name} cliked`);
                   }}
                 >
                   <CartSideItem
@@ -207,7 +204,6 @@ const Main = props => {
 const mapStateToProps = state => {
   return {
     cart: state.cart,
-    cartID: state.cartID,
     total: state.total
   };
 };
@@ -216,3 +212,13 @@ export default connect(
   mapStateToProps,
   null
 )(Main);
+
+Main.propTypes = {
+  cart: PropTypes.shape([]).isRequired,
+  categories: PropTypes.shape([PropTypes.string]),
+  departments: PropTypes.array,
+  onAddToCart: PropTypes.func,
+  onRemoveFromCart: PropTypes.func,
+  total: PropTypes.number,
+  username: PropTypes.string
+};
