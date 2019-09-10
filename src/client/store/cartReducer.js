@@ -33,7 +33,7 @@ const cartReducer = (state = initialCart, action) => {
     return {
       ...state,
       cartID: action.id,
-      cart: [...state.cart, action.val],
+      cart: [...state.cart, itemCopy],
       total: parseFloat(total.toFixed(2))
     };
   }
