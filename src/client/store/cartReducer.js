@@ -9,7 +9,6 @@ const cart = (state = initialCart, action) => {
 
   if (action.type === "LOADSESSION") {
     const sessionCart = getSessionCart(action.id);
-    console.log(sessionCart);
     return {
       ...state,
       ...sessionCart

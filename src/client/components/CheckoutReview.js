@@ -6,6 +6,8 @@ import Grid from "@material-ui/core/Grid";
 // Review Cart information and submit order
 
 const CheckoutReview = props => {
+  const { checkout } = props;
+  console.log(checkout);
   return (
     <>
       <p>Review Component</p>

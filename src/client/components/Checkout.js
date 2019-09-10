@@ -40,7 +40,9 @@ const useStyles = makeStyles(theme => ({
 
 const Checkout = props => {
   const classes = useStyles();
-  const { cart, total, ship, checkout } = props;
+  const { cart, total, ship, checkout, payment } = props;
+  // console.log(checkout);
+  console.log(cart);
 
   const cartItemAmount = () => {
     return (
@@ -69,9 +71,9 @@ const Checkout = props => {
       >
         <Grid item xs={8}>
           <Paper className={classes.paper}>
-            <Shipping />
-            <Payments />
-            <CheckoutReview />
+            <Shipping checkout={checkout} />
+            <Payments checkout={checkout} />
+            <CheckoutReview checkout={checkout} />
           </Paper>
         </Grid>
         <Grid item xs={4}>
@@ -92,7 +94,14 @@ const Checkout = props => {
           ship();
         }}
       >
-        Redux Add shipping infor magic!
+        Redux Add shipping info magic!
+      </Button>
+      <Button
+        onClick={() => {
+          payment();
+        }}
+      >
+        Redux Add payment info magic!
       </Button>
     </Paper>
   );
@@ -104,7 +113,8 @@ const mapDispatchToProps = dispatch => {
     removeFromCart: item => dispatch({ type: "REMOVE", val: item }),
     getCartFromSession: id => dispatch({ type: "LOADSESSION", id }),
     updateCart: (item, id) => dispatch({ type: "UPDATE", val: item, id }),
-    ship: () => dispatch({ type: "SHIPPING" })
+    ship: () => dispatch({ type: "SHIPPING" }),
+    payment: () => dispatch({ type: "PAYMENT" })
   };
 };
 
