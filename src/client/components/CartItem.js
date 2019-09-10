@@ -1,16 +1,10 @@
 import Button from "@material-ui/core/Button";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import SizeAttributeSelector from "./SizeAttributeSelector";
-import ColorAttributeSelector from "./ColorAttributeSelector";
-import QuantityAttributeSelector from "./QuantityAttributeSelector";
 import CartSelectors from "./CartSelectors";
 
 const useStyles = makeStyles(theme => ({
@@ -46,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 const CartItem = props => {
   const classes = useStyles();
   const theme = useTheme();
-  const { data, onRemoveFromCart } = props;
+  const { data, onRemoveFromCart, onUpdateCart } = props;
   return (
     <Card raised className={classes.card}>
       <CardMedia
@@ -68,10 +62,7 @@ const CartItem = props => {
           </Typography>
         </CardContent>
         <div className={classes.attributes}>
-          QTY: {data.attributes.quantity}
-          Color: {data.attributes.color}
-          Size: {data.attributes.size}
-          <CartSelectors data={data.attributes} />
+          <CartSelectors data={data} onUpdateCart={onUpdateCart} />
         </div>
       </div>
       <Button

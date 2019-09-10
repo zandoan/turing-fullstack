@@ -6,8 +6,10 @@ import ListItem from "@material-ui/core/ListItem";
 import CartItem from "./CartItem";
 
 const Cart = props => {
-  const { cart, cartID, total, removeFromCart } = props;
+  console.log("INSIDE CART");
+  const { cart, cartID, total, removeFromCart, updateCart } = props;
   console.log(cart);
+  console.log(updateCart);
   return (
     <>
       <h1>Cart Items</h1>
@@ -15,7 +17,11 @@ const Cart = props => {
         {cart && cart.length
           ? cart.map((product, index) => (
               <ListItem key={product.cartItemID}>
-                <CartItem data={product} onRemoveFromCart={removeFromCart} />
+                <CartItem
+                  data={product}
+                  onRemoveFromCart={removeFromCart}
+                  onUpdateCart={(item, id) => updateCart(item, id)}
+                />
               </ListItem>
             ))
           : "Cart Empty"}
@@ -40,7 +46,9 @@ const mapDispatchToProps = dispatch => {
   return {
     addToCart: (item, id) => dispatch({ type: "ADD", val: item, id }),
     removeFromCart: item => dispatch({ type: "REMOVE", val: item }),
-    getCartFromSession: id => dispatch({ type: "LOADSESSION", id })
+    getCartFromSession: id => dispatch({ type: "LOADSESSION", id }),
+    updateCart: (item, id) =>
+      dispatch({ type: "UPDATE", val: item, cartItemID: id })
   };
 };
 

@@ -5,14 +5,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 export default function CartSelectors(props) {
-  console.log("CartSelectors props");
-  console.log(props);
-  const { color, quantity, size } = props.data;
-  console.log(color);
+  // console.log("CartSelectors props");
+  // console.log(props);
+  const { color, quantity, size } = props.data.attributes;
+  const { cartItemID } = props.data;
+  const { onUpdateCart } = props;
+  // console.log(onUpdateCart);
   const [values, setValues] = React.useState({
     color,
     quantity,
-    size
+    size,
+    cartItemID
   });
 
   function handleChange(event) {
@@ -20,26 +23,15 @@ export default function CartSelectors(props) {
       ...oldValues,
       [event.target.name]: event.target.value
     }));
+    // console.log("CHANGING!!!!!");
+    // console.log("target name => ", event.target.name);
+    // console.log("value => ", event.target.value);
+    // console.log(`cartItemID => `, cartItemID);
+    onUpdateCart({ [event.target.name]: event.target.value }, cartItemID);
   }
 
   return (
     <form autoComplete="off">
-      <FormControl>
-        <InputLabel htmlFor="quantity">Quantity</InputLabel>
-        <Select
-          value={values.quantity}
-          onChange={handleChange}
-          inputProps={{
-            name: "quantity"
-          }}
-        >
-          {[...Array(10).keys()].map((item, idx) => (
-            <MenuItem value={idx + 1} key={idx + 1}>
-              {idx + 1}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
       <FormControl>
         <InputLabel htmlFor="color">Color</InputLabel>
         <Select
@@ -78,6 +70,22 @@ export default function CartSelectors(props) {
           {["S", "M", "L", "XL", "XXL"].map(item => (
             <MenuItem value={item} key={item}>
               {item}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl>
+        <InputLabel htmlFor="quantity">Quantity</InputLabel>
+        <Select
+          value={values.quantity}
+          onChange={handleChange}
+          inputProps={{
+            name: "quantity"
+          }}
+        >
+          {[...Array(10).keys()].map((item, idx) => (
+            <MenuItem value={idx + 1} key={idx + 1}>
+              {idx + 1}
             </MenuItem>
           ))}
         </Select>

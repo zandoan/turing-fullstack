@@ -45,8 +45,8 @@ const ProductDetail = forwardRef((props, ref) => {
   const [image, toggleImage] = useState(data.image);
   const [attributes, setAtrribute] = useState({
     quantity: 1,
-    size: "s",
-    color: "white"
+    size: "S",
+    color: "White"
   });
 
   const handleToggleAttribute = (attribute, value) => {
