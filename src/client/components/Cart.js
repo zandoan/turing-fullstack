@@ -51,9 +51,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart,
-    cartID: state.cartID,
-    total: state.total
+    cart: state.cart.cart,
+    cartID: state.cart.cartID,
+    total: state.cart.total
   };
 };
 

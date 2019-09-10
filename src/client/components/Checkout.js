@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 import CheckoutReview from "./CheckoutReview";
 import OrderSummary from "./OrderSummary";
@@ -39,9 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 const Checkout = props => {
   const classes = useStyles();
-  const { cart, total } = props;
-  console.log("CHECKOUT");
-  console.log(cart);
+  const { cart, total, ship, checkout } = props;
 
   const cartItemAmount = () => {
     return (
@@ -88,12 +87,30 @@ const Checkout = props => {
       >
         Back to Cart
       </Button>
+      <Button
+        onClick={() => {
+          ship();
+        }}
+      >
+        Redux Add shipping infor magic!
+      </Button>
     </Paper>
   );
 };
 
-export default Checkout;
-
-Checkout.propTypes = {
-  toggleView: PropTypes.func.isRequired
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: (item, id) => dispatch({ type: "ADD", val: item, id }),
+    removeFromCart: item => dispatch({ type: "REMOVE", val: item }),
+    getCartFromSession: id => dispatch({ type: "LOADSESSION", id }),
+    updateCart: (item, id) => dispatch({ type: "UPDATE", val: item, id }),
+    ship: () => dispatch({ type: "SHIPPING" })
+  };
 };
+
+const mapStateToProps = ({ checkout }) => ({ checkout });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Checkout);

@@ -58,6 +58,8 @@ const Main = props => {
     total,
     username
   } = props;
+  console.log(cart);
+  console.log(total);
   const [view, toggleView] = useState("Products");
   const [selectedDepartment, toggleDepartment] = useState(null);
   // TODO: Work on logic to filter items by category
@@ -224,8 +226,8 @@ const Main = props => {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart,
-    total: state.total
+    cart: state.cart.cart,
+    total: state.cart.total
   };
 };
 

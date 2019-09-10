@@ -1,12 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 import App from "./App";
-import cartReducer from "./store/cartReducer";
+import cart from "./store/cartReducer";
+import checkout from "./store/checkoutReducer";
 
-const store = createStore(cartReducer);
+const rootReducer = combineReducers({
+  cart,
+  checkout
+});
+const store = createStore(rootReducer);
+// console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

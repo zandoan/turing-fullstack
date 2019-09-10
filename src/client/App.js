@@ -33,10 +33,10 @@ class App extends Component {
 
   checkSession = () => {
     if (getSessionID(sessionID)) {
-      // console.log("Session Found, loading data...");
+      console.log("Session Found, loading data...");
       this.loadCartFromSession(sessionID);
     } else {
-      // console.log("No session yet, creating one");
+      console.log("No session yet, creating one");
       createSession();
     }
   };
@@ -86,8 +86,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = ({ cart }) => ({ cart });
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);
 
