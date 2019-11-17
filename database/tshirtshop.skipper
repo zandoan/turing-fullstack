@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<skipper version="3.2.22.1611" mvc="Without MVC" orm="Doctrine2" name="Turing" uuid="9911a473-05ed-4450-a588-f40b6c4979b3">
+  <module name="\Turing tshirtshop" local-name="Turing tshirtshop" namespace="\Db\Entity" local-namespace="Db\Entity" export-format="Doctrine2Xml" export-path="../module/Db/config/orm" uuid="194584b8-e179-4137-9f57-33a46e1f23c6">
+    <comment caption="Stored Procedures" description="catalog_add_attribute(IN inName VARCHAR(100))&#10;&#10;catalog_add_attribute_value(&#10;  IN inAttributeId INT, IN inValue VARCHAR(100))&#10;&#10;catalog_add_category(IN inDepartmentId INT,&#10;  IN inName VARCHAR(100), IN inDescription VARCHAR(1000))&#10;&#10;catalog_add_department(&#10;  IN inName VARCHAR(100), IN inDescription VARCHAR(1000))&#10;&#10;catalog_add_product_to_category(IN inCategoryId INT,&#10;  IN inName VARCHAR(100), IN inDescription VARCHAR(1000),&#10;  IN inPrice DECIMAL(10, 2))&#10;&#10;catalog_assign_attribute_value_to_product(&#10;  IN inProductId INT, IN inAttributeValueId INT)&#10;&#10;catalog_assign_product_to_category(&#10;  IN inProductId INT, IN inCategoryId INT)&#10;&#10;catalog_count_products_in_category(IN inCategoryId INT)&#10;&#10;catalog_count_products_on_catalog()&#10;&#10;catalog_count_products_on_department(IN inDepartmentId INT)&#10;&#10;catalog_count_search_result(&#10;  IN inSearchString TEXT, IN inAllWords VARCHAR(3))&#10;&#10;catalog_create_product_review(IN inCustomerId INT,&#10;  IN inProductId INT, IN inReview TEXT, IN inRating SMALLINT)&#10;&#10;catalog_delete_attribute(IN inAttributeId INT)&#10;&#10;catalog_delete_attribute_value(IN inAttributeValueId INT)&#10;&#10;catalog_delete_category(IN inCategoryId INT)&#10;&#10;catalog_delete_department(IN inDepartmentId INT)&#10;&#10;catalog_delete_product(IN inProductId INT)&#10;&#10;catalog_get_attribute_details(IN inAttributeId INT)&#10;&#10;catalog_get_attribute_values(IN inAttributeId INT)&#10;&#10;catalog_get_attributes()&#10;&#10;catalog_get_attributes_not_assigned_to_product(&#10;  IN inProductId INT)&#10;&#10;catalog_get_categories()&#10;&#10;catalog_get_categories_for_product(IN inProductId INT)&#10;&#10;catalog_get_categories_list(IN inDepartmentId INT)&#10;&#10;catalog_get_category_details(IN inCategoryId INT)&#10;&#10;catalog_get_category_name(IN inCategoryId INT)&#10;&#10;catalog_get_category_products(IN inCategoryId INT)&#10;&#10;catalog_get_department_categories(IN inDepartmentId INT)&#10;&#10;catalog_get_department_details(IN inDepartmentId INT)&#10;&#10;catalog_get_department_name(IN inDepartmentId INT)&#10;&#10;catalog_get_departments()&#10;&#10;catalog_get_departments_list()&#10;&#10;catalog_get_product_attributes(IN inProductId INT)&#10;&#10;catalog_get_product_details(IN inProductId INT)&#10;&#10;catalog_get_product_info(IN inProductId INT)&#10;&#10;catalog_get_product_locations(IN inProductId INT)&#10;&#10;catalog_get_product_name(IN inProductId INT)&#10;&#10;catalog_get_product_reviews(IN inProductId INT)&#10;&#10;catalog_get_products_in_category(&#10;  IN inCategoryId INT, IN inShortProductDescriptionLength INT,&#10;  IN inProductsPerPage INT, IN inStartItem INT)&#10;&#10;catalog_get_products_on_catalog(&#10;  IN inShortProductDescriptionLength INT,&#10;  IN inProductsPerPage INT, IN inStartItem INT)&#10;" uuid="5ac8feda-977e-4148-9f1b-7ac9790dbc0a"/>
+    <comment caption="Stored Procedures (cont 1)" description="catalog_get_products_on_department(&#10;  IN inDepartmentId INT, IN inShortProductDescriptionLength INT,&#10;  IN inProductsPerPage INT, IN inStartItem INT)&#10;&#10;catalog_get_recommendations(&#10;  IN inProductId INT, IN inShortProductDescriptionLength INT)&#10;&#10;catalog_move_product_to_category(IN inProductId INT,&#10;  IN inSourceCategoryId INT, IN inTargetCategoryId INT)&#10;&#10;catalog_remove_product_attribute_value(&#10;  IN inProductId INT, IN inAttributeValueId INT)&#10;&#10;catalog_remove_product_from_category(&#10;  IN inProductId INT, IN inCategoryId INT)&#10;&#10;catalog_search(&#10;  IN inSearchString TEXT, IN inAllWords VARCHAR(3),&#10;  IN inShortProductDescriptionLength INT,&#10;  IN inProductsPerPage INT, IN inStartItem INT)&#10;&#10;catalog_set_image(&#10;  IN inProductId INT, IN inImage VARCHAR(150))&#10;&#10;catalog_set_image_2(&#10;  IN inProductId INT, IN inImage VARCHAR(150))&#10;&#10;catalog_set_product_display_option(&#10;  IN inProductId INT, IN inDisplay SMALLINT)&#10;&#10;catalog_set_thumbnail(&#10;  IN inProductId INT, IN inThumbnail VARCHAR(150))&#10;&#10;catalog_update_attribute(&#10;  IN inAttributeId INT, IN inName VARCHAR(100))&#10;&#10;catalog_update_attribute_value(&#10;  IN inAttributeValueId INT, IN inValue VARCHAR(100))&#10;&#10;catalog_update_category(IN inCategoryId INT,&#10;  IN inName VARCHAR(100), IN inDescription VARCHAR(1000))&#10;&#10;catalog_update_department(IN inDepartmentId INT,&#10;  IN inName VARCHAR(100), IN inDescription VARCHAR(1000))&#10;&#10;catalog_update_product(IN inProductId INT,&#10;  IN inName VARCHAR(100), IN inDescription VARCHAR(1000),&#10;  IN inPrice DECIMAL(10, 2), IN inDiscountedPrice DECIMAL(10, 2))&#10;&#10;customer_add(IN inName VARCHAR(50),&#10;  IN inEmail VARCHAR(100), IN inPassword VARCHAR(50))&#10;&#10;customer_get_customer(IN inCustomerId INT)&#10;&#10;customer_get_customers_list()&#10;&#10;customer_get_login_info(IN inEmail VARCHAR(100))&#10;&#10;customer_get_shipping_regions()&#10;&#10;customer_update_account(IN inCustomerId INT,&#10;  IN inName VARCHAR(50), IN inEmail VARCHAR(100),&#10;  IN inPassword VARCHAR(50), IN inDayPhone VARCHAR(100),&#10;  IN inEvePhone VARCHAR(100), IN inMobPhone VARCHAR(100))&#10;&#10;customer_update_address(IN inCustomerId INT,&#10;  IN inAddress1 VARCHAR(100), IN inAddress2 VARCHAR(100),&#10;  IN inCity VARCHAR(100), IN inRegion VARCHAR(100),&#10;  IN inPostalCode VARCHAR(100), IN inCountry VARCHAR(100),&#10;  IN inShippingRegionId INT)&#10;&#10;customer_update_credit_card(&#10;  IN inCustomerId INT, IN inCreditCard TEXT)&#10;&#10;orders_create_audit(IN inOrderId INT,&#10;  IN inMessage TEXT, IN inCode INT)&#10;&#10;orders_get_audit_trail(IN inOrderId INT)&#10;&#10;orders_get_by_customer_id(IN inCustomerId INT)&#10;&#10;orders_get_most_recent_orders(IN inHowMany INT)&#10;&#10;orders_get_order_details(IN inOrderId INT)&#10;&#10;orders_get_order_info(IN inOrderId INT)&#10;&#10;orders_get_order_short_details(IN inOrderId INT)&#10;&#10;orders_get_orders_between_dates(&#10;  IN inStartDate DATETIME, IN inEndDate DATETIME)&#10;&#10;orders_get_orders_by_status(IN inStatus INT)&#10;&#10;" uuid="56463c51-c021-402f-9f39-102888855c06"/>
+    <comment caption="Stored Procedures (cont 2)" description="orders_get_shipping_info(IN inShippingRegionId INT)&#10;&#10;orders_set_auth_code(IN inOrderId INT,&#10;  IN inAuthCode VARCHAR(50), IN inReference VARCHAR(50))&#10;&#10;orders_set_date_shipped(IN inOrderId INT)&#10;&#10;orders_update_order(IN inOrderId INT, IN inStatus INT,&#10;  IN inComments VARCHAR(255), IN inAuthCode VARCHAR(50),&#10;  IN inReference VARCHAR(50))&#10;&#10;orders_update_status(IN inOrderId INT, IN inStatus INT)&#10;&#10;shopping_cart_add_product(IN inCartId CHAR(32),&#10;  IN inProductId INT, IN inAttributes VARCHAR(1000))&#10;&#10;shopping_cart_count_old_carts(IN inDays INT)&#10;&#10;shopping_cart_create_order(IN inCartId CHAR(32),&#10;  IN inCustomerId INT, IN inShippingId INT, IN inTaxId INT)&#10;&#10;shopping_cart_delete_old_carts(IN inDays INT)&#10;&#10;shopping_cart_empty(IN inCartId CHAR(32))&#10;&#10;shopping_cart_get_products(IN inCartId CHAR(32))&#10;&#10;shopping_cart_get_recommendations(&#10;  IN inCartId CHAR(32), IN inShortProductDescriptionLength INT)&#10;&#10;shopping_cart_get_saved_products(IN inCartId CHAR(32))&#10;&#10;shopping_cart_get_total_amount(IN inCartId CHAR(32))&#10;&#10;shopping_cart_move_product_to_cart(IN inItemId INT)&#10;&#10;shopping_cart_remove_product(IN inItemId INT)&#10;&#10;shopping_cart_save_product_for_later(IN inItemId INT)&#10;&#10;shopping_cart_update(IN inItemId INT, IN inQuantity INT)&#10;" uuid="9247f27e-453b-45f7-a142-a4ca401c6b1c"/>
+    <region namespace="\Db\Entity" caption="P:roduct" uuid="8eb0dd58-e6be-44ae-a1f2-8e9431d77cbe">
+      <entity name="\Db\Entity\attribute" local-name="attribute" namespace="\Db\Entity" uuid="23f7a6ca-1ad5-43dd-93b5-17936f80197a">
+        <field name="attribute_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="2a9176b1-0063-484c-9572-70cec6f574c6"/>
+        <field name="name" type="string" size="100" required="true" uuid="9e2f28e2-2e31-40f2-ae67-a7715794f6a9"/>
+        <orm-attributes>
+          <attribute name="table">attribute</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\attribute_value" local-name="attribute_value" namespace="\Db\Entity" uuid="401aa413-c442-40c6-a65d-eb408d13daeb">
+        <field name="attribute_value_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="94a4d102-ca81-406f-b90f-0aec52e25755"/>
+        <field name="attribute_id" type="integer" required="true" uuid="99a64e89-732f-4b77-b647-a3fe19a7b87a"/>
+        <field name="value" type="string" size="100" required="true" uuid="3c158c82-f7ea-4ef6-a75f-497500d6f0f4"/>
+        <index name="idx_attribute_value_attribute_id" uuid="2e7dd9a0-7bb5-42a2-aba5-84ac78ce94ed">
+          <index-field name="attribute_id" uuid="241f28b7-5bfa-452e-a9ed-28c62d7b5124"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">attribute_value</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\category" local-name="category" namespace="\Db\Entity" uuid="4c98b2cc-c0e7-4f6e-a264-749271ab5400">
+        <field name="category_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="55f485b0-4ac1-411d-aab1-7c0af35052ed"/>
+        <field name="department_id" type="integer" required="true" uuid="fdcd005c-b528-4c7f-aae2-514e5d6a59bc"/>
+        <field name="name" type="string" size="100" required="true" uuid="cd11cd94-3635-46cf-aca9-84409fb86510"/>
+        <field name="description" type="text" uuid="cde979fe-0eca-432e-9903-99ea3d4c68da"/>
+        <index name="idx_category_department_id" uuid="f84a0e3b-4c5d-451c-b72e-56864ac7ba4c">
+          <index-field name="department_id" uuid="7d5ba2e4-67b1-4785-9641-e882c89af6f5"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">category</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\department" local-name="department" namespace="\Db\Entity" uuid="8a5d4863-29e4-49d7-91f9-305b8e7509c5">
+        <field name="department_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="fb58397c-6271-4f00-82d9-5adfe2827bf6"/>
+        <field name="description" type="text" uuid="481a3a54-f6e1-4e01-8afb-b12a725ea52d"/>
+        <field name="name" type="string" size="100" required="true" uuid="7dacfc37-a3fd-4e23-b6db-56b180320625"/>
+        <orm-attributes>
+          <attribute name="table">department</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\product" local-name="product" namespace="\Db\Entity" uuid="56c920a1-7156-46f0-9713-91af4dc73cb0">
+        <field name="product_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="bc3a2d87-0199-4de0-bdd0-737e4a641372"/>
+        <field name="description" type="text" required="true" uuid="5e2210d3-8ce2-4fb7-a879-684dace855fd"/>
+        <field name="discounted_price" type="decimal" size="10" default="0.00" required="true" uuid="0398c066-930c-41c1-98d6-84cd1a6e3c12">
+          <orm-attributes>
+            <attribute name="scale">2</attribute>
+          </orm-attributes>
+        </field>
+        <field name="display" type="smallint" default="0" required="true" uuid="ce63225e-e053-45ab-807e-628f17d7edf8"/>
+        <field name="image" type="string" size="150" uuid="c6833733-5b81-41ae-88a7-87b726806215"/>
+        <field name="image_2" type="string" size="150" uuid="28ea1ef6-6f41-491a-8312-8ad09bef185c"/>
+        <field name="name" type="string" size="100" required="true" uuid="ce2e9bdb-897b-4fc5-94e6-40876f4d0843"/>
+        <field name="price" type="decimal" size="10" required="true" uuid="561982e7-faa1-4a2a-952b-214d28da906f">
+          <orm-attributes>
+            <attribute name="scale">2</attribute>
+          </orm-attributes>
+        </field>
+        <field name="thumbnail" type="string" size="150" uuid="c3793543-ad4e-4af0-b60f-70899497527d"/>
+        <index name="idx_product_name" uuid="d66c724c-3904-46d3-885c-4f9208b2e6e2">
+          <index-field name="name" uuid="57a93eba-fd15-4141-af68-365191f61cab"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">product</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\review" local-name="review" namespace="\Db\Entity" uuid="224b1662-7da9-4b5d-ba2d-b85d7999e930">
+        <field name="review_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="4acdd98d-2d75-4cb1-87ad-7a1980b4be56"/>
+        <field name="customer_id" type="integer" required="true" uuid="3e319b89-78aa-449d-9fc7-87c3e0469c9e"/>
+        <field name="product_id" type="integer" required="true" uuid="ee5dde7f-77bf-422a-9f9e-9d92bc5ba6b1"/>
+        <field name="created_on" type="datetime" required="true" uuid="291d7020-9176-4f9b-b66a-7b263c63a8c5"/>
+        <field name="rating" type="smallint" required="true" uuid="d598796d-b42a-4d2b-b9e3-3936dc4e7973"/>
+        <field name="review" type="text" required="true" uuid="47f260eb-c746-42c7-b729-5f8079ee5658"/>
+        <index name="idx_review_customer_id" uuid="1e8d1376-d02b-4dd6-9350-0b7fa1e2af58">
+          <index-field name="customer_id" uuid="8baaf10b-94ee-4993-b5ea-bc70242d074b"/>
+        </index>
+        <index name="idx_review_product_id" uuid="0ad6b136-5678-4c12-aed9-bad7e87d7c9c">
+          <index-field name="product_id" uuid="242b5922-efca-43f8-a2e9-b73b397def31"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">review</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\product_attribute" local-name="product_attribute" namespace="\Db\Entity" uuid="c433a461-f5c7-46be-959a-b84ef778e48a">
+        <field name="attribute_value_id" type="integer" required="true" primary="true" uuid="6ebe800b-e25d-4c93-9d73-f226b04b043c"/>
+        <field name="product_id" type="integer" required="true" primary="true" uuid="106d740b-e278-4232-b659-d2b0e81a5830"/>
+        <orm-attributes>
+          <attribute name="table">product_attribute</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\product_category" local-name="product_category" namespace="\Db\Entity" uuid="e185eeb0-7e7a-4730-bad3-433fed651a41">
+        <field name="category_id" type="integer" required="true" primary="true" uuid="3ffbad28-3fc0-4ab6-b6ac-016b983d9afd"/>
+        <field name="product_id" type="integer" required="true" primary="true" uuid="0e9cf434-d362-492f-bd86-1098e25fd033"/>
+        <orm-attributes>
+          <attribute name="table">product_category</attribute>
+        </orm-attributes>
+      </entity>
+    </region>
+    <association from="\Db\Entity\attribute_value" to="\Db\Entity\attribute" caption="Attribute AttributeValues" owner-alias="attributeValues" inverse-alias="attribute" many-owner="true" many-inverse="false" parent-required="true" uuid="b7c05cb9-f439-4536-90b3-5a16983add92">
+      <association-field from="attribute_id" to="attribute_id" uuid="381cb798-2112-441e-8c62-9d733ec224a8"/>
+    </association>
+    <association from="\Db\Entity\category" to="\Db\Entity\department" caption="Department Category" owner-alias="category" inverse-alias="department" many-owner="true" many-inverse="false" parent-required="true" uuid="d549c7fb-7015-4f7b-9b6f-3e89f20f9ed4">
+      <association-field from="department_id" to="department_id" uuid="63c85f3a-a08f-4373-84b9-7b8750fd0fe6"/>
+    </association>
+    <association from="\Db\Entity\review" to="\Db\Entity\product" caption="Product Reviews" owner-alias="reviews" inverse-alias="product" many-owner="true" many-inverse="false" parent-required="true" uuid="76ab676e-8de9-4abe-9171-c6f93884a617">
+      <association-field from="product_id" to="product_id" uuid="b6da659e-179b-4315-9eda-fd0f2d279a12"/>
+    </association>
+    <association from="\Db\Entity\review" to="\Db\Entity\customer" caption="Customer Review" owner-alias="review" inverse-alias="customer" many-owner="true" many-inverse="false" parent-required="true" uuid="9eeffb8b-0c7f-4562-aa7a-57df567b8d25">
+      <association-field from="customer_id" to="customer_id" uuid="cdc16ed8-459e-43d2-a872-89f945628f2d"/>
+    </association>
+    <many-to-many mn-entity="\Db\Entity\product_attribute" caption="Product to AttributeValue" uuid="dd5eda78-4a48-4072-9cdf-17d364218b4a">
+      <many-to-many-entity name="\Db\Entity\attribute_value" owning-side="true" alias="attributeValues" uuid="27125d55-a41c-42f5-b025-aec655a3d0d0">
+        <many-to-many-field from="attribute_value_id" to="attribute_value_id" uuid="48efa363-ee01-46fd-bd95-dc7c1f26f2a8"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="\Db\Entity\product" owning-side="false" alias="products" uuid="47eee1c0-d298-4639-abea-d7555ff03a8b">
+        <many-to-many-field from="product_id" to="product_id" uuid="1b027980-8206-4fcc-9235-00c4987ba959"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <many-to-many mn-entity="\Db\Entity\product_category" caption="Product Category" uuid="602e99c8-1e6e-486c-858f-38c60117946a">
+      <many-to-many-entity name="\Db\Entity\category" owning-side="true" alias="categories" uuid="949f1fe2-13e7-4ead-ab36-9974ef6a6d57">
+        <many-to-many-field from="category_id" to="category_id" uuid="f0143afd-5561-405c-a87d-666ee29b739a"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="\Db\Entity\product" owning-side="false" alias="products" uuid="21c8b12e-e67f-4345-9a85-1d0b5394a75c">
+        <many-to-many-field from="product_id" to="product_id" uuid="224bc390-2978-42d3-bf39-ea8d6ccdaf1e"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <region namespace="\Db\Entity" caption="Order" uuid="214835f0-2ed9-43d0-a3fa-8733cde48ba4">
+      <entity name="\Db\Entity\audit" local-name="audit" namespace="\Db\Entity" uuid="f78632ec-8109-4b15-8ac7-d77a5a5e6b32">
+        <field name="audit_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="8adb45b3-ae6a-42db-bdc6-a118868d5b7a"/>
+        <field name="code" type="integer" required="true" uuid="3d19fee4-9559-416d-997e-fbe1d32ab956"/>
+        <field name="created_on" type="datetime" required="true" uuid="250dd65e-7ed6-4347-8ee2-a7adf0aea618"/>
+        <field name="message" type="text" required="true" uuid="f08d9dd2-6119-47c3-a979-9b7281954183"/>
+        <field name="order_id" type="integer" required="true" uuid="42ea22df-cfce-4088-bbbb-43d25fe08cab"/>
+        <index name="idx_audit_order_id" uuid="305e07a9-683a-4b0b-acf7-7fa8c00b8520">
+          <index-field name="order_id" uuid="b172ea67-abc9-43bd-8f0a-3d4f45494cba"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">audit</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\order_detail" local-name="order_detail" namespace="\Db\Entity" uuid="2b034cd5-d1d4-4ba2-bf57-d1b42c3aafba">
+        <field name="item_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="80c4efcd-3521-4bf7-92a8-cca8dc4809cc"/>
+        <field name="order_id" type="integer" required="true" uuid="c123d9ce-1671-43e8-81ce-7ae003fbc414"/>
+        <field name="product_id" type="integer" required="true" uuid="6955d358-bb55-4179-b9c5-5ea0036056d8"/>
+        <field name="attributes" type="text" required="true" uuid="9016351a-20bd-44c9-8bd2-b5bae05e7597"/>
+        <field name="product_name" type="string" size="100" required="true" uuid="cd7db067-4f04-40b5-899f-53d5b9e28f37"/>
+        <field name="quantity" type="integer" required="true" uuid="68168e3a-4cce-455f-956a-2111cfd7af94"/>
+        <field name="unit_cost" type="decimal" size="10" required="true" uuid="30e76e22-8565-408d-934d-c3ab81d79289">
+          <orm-attributes>
+            <attribute name="scale">2</attribute>
+          </orm-attributes>
+        </field>
+        <index name="idx_order_detail_order_id" uuid="f044e0f1-e4a1-4d94-add6-5246c5b21d9e">
+          <index-field name="order_id" uuid="d092625e-6da0-4801-b1d2-6bc03ff520e3"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">order_detail</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\orders" local-name="orders" namespace="\Db\Entity" uuid="5692ab04-2f6e-4fbd-8dce-d685a75dcaa0">
+        <field name="order_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="8f87bdef-0c63-42ce-817e-260095f64232"/>
+        <field name="customer_id" type="integer" required="true" uuid="87416279-2b59-4eb7-9f9d-7670953a6ee1"/>
+        <field name="shipping_id" type="integer" required="true" uuid="8785fdf9-a6c9-45d4-9abe-ec84714e7492"/>
+        <field name="tax_id" type="integer" required="true" uuid="cd68c8e1-c4b7-420c-a97c-256734ae6998"/>
+        <field name="auth_code" type="string" size="50" uuid="62eea9bb-b0ce-47ff-9cfa-50e6b09b5e23"/>
+        <field name="comments" type="string" size="255" uuid="eb0843c3-7b23-4f3c-84a4-2025640a5a96"/>
+        <field name="created_on" type="datetime" required="true" uuid="cdc808b4-c367-42ff-b8ff-5680b9e6f49c"/>
+        <field name="reference" type="string" size="50" uuid="d045c8cc-7af1-46d2-bec1-500b36568dfd"/>
+        <field name="shipped_on" type="datetime" uuid="060c7930-ba3c-467a-9151-78d5bee97b78"/>
+        <field name="status" type="integer" default="0" required="true" uuid="e1485833-fa30-4cb7-ab05-98aa8bde68c0"/>
+        <field name="total_amount" type="decimal" size="10" default="0.00" required="true" uuid="fbe304be-3624-4385-b855-0897cb5a2416">
+          <orm-attributes>
+            <attribute name="scale">2</attribute>
+          </orm-attributes>
+        </field>
+        <index name="idx_orders_customer_id" uuid="36bad16b-45f1-4526-9a3d-72931de49e3d">
+          <index-field name="customer_id" uuid="c8961f68-d308-43aa-b231-0d9810823656"/>
+        </index>
+        <index name="idx_orders_shipping_id" uuid="f806b697-05de-44fd-a0c0-cec2a9469797">
+          <index-field name="shipping_id" uuid="63add446-47fb-430c-889e-baaf6b6c0501"/>
+        </index>
+        <index name="idx_orders_tax_id" uuid="7e61af8f-b581-4f12-94fb-d21cbd61ef5f">
+          <index-field name="tax_id" uuid="60b60de6-895f-489c-8e37-45a9165bbb12"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">orders</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\shipping" local-name="shipping" namespace="\Db\Entity" uuid="1abca499-cbde-4019-ae74-ce0ce515b4f7">
+        <field name="shipping_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="4da503dc-252f-42e5-8366-e1e4b36d847c"/>
+        <field name="shipping_region_id" type="integer" required="true" uuid="f1f33a09-87d4-40b2-aa9b-1b4ef90165cf"/>
+        <field name="shipping_cost" type="decimal" size="10" required="true" uuid="c9de2e27-a2bf-4bc4-80f5-90f80fd855f8">
+          <orm-attributes>
+            <attribute name="scale">2</attribute>
+          </orm-attributes>
+        </field>
+        <field name="shipping_type" type="string" size="100" required="true" uuid="ab53c9ab-cba4-481a-90d2-92dd5db7ddc3"/>
+        <index name="idx_shipping_shipping_region_id" uuid="a437a3c9-80e3-4baa-a45c-7fbb493dab0d">
+          <index-field name="shipping_region_id" uuid="f7b230c8-6c31-4501-86cb-4a3a90d48a66"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">shipping</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\shipping_region" local-name="shipping_region" namespace="\Db\Entity" uuid="b9d13ccb-8b38-4ad0-aed4-c6465af6431a">
+        <field name="shipping_region_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="832f3fac-aa5f-4b39-ab95-f2e83fd1b643"/>
+        <field name="shipping_region" type="string" size="100" required="true" uuid="a729ca93-793a-4760-ad7d-d2579d90facf"/>
+        <orm-attributes>
+          <attribute name="table">shipping_region</attribute>
+        </orm-attributes>
+      </entity>
+      <entity name="\Db\Entity\tax" local-name="tax" namespace="\Db\Entity" uuid="f33a894a-cc26-48e4-8867-eac2ee6ade70">
+        <field name="tax_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c505dd70-b5e5-449f-8eba-507ee0db669a"/>
+        <field name="tax_percentage" type="decimal" size="10" required="true" uuid="9d8e06ab-5ff2-49f9-8ad1-d637746705f7">
+          <orm-attributes>
+            <attribute name="scale">2</attribute>
+          </orm-attributes>
+        </field>
+        <field name="tax_type" type="string" size="100" required="true" uuid="e5a36ea2-d534-411d-b39c-bfef5eee2b27"/>
+        <orm-attributes>
+          <attribute name="table">tax</attribute>
+        </orm-attributes>
+      </entity>
+      <comment caption="OrderStatus" description="The order_status fixture is missing.  A field in orders references this missing table through `status (int)`" uuid="61675dbc-e92f-40e8-b50b-f1cab446eab3"/>
+      <comment caption="AuditCode" description="The audit_code fixture is missing and referenced by audit `code (int)`" uuid="c7a534bf-a888-4888-95f5-c5dea5be7033"/>
+      <region namespace="\Db\Entity" caption="Customer" uuid="cfa628cf-9d82-41ea-b118-661dd1ef49e8">
+        <entity name="\Db\Entity\customer" local-name="customer" namespace="\Db\Entity" uuid="65d73ada-164d-412c-95a5-a0a8fae8f36b">
+          <field name="customer_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="1d60bdd9-192d-4fc5-b452-3e76b4a05c96"/>
+          <field name="shipping_region_id" type="integer" default="1" required="true" uuid="841c35bc-8a5a-4bd9-ad00-0105201b6d94"/>
+          <field name="address_1" type="string" size="100" uuid="00cd26a4-7a28-42ee-a8b5-142cea138c06"/>
+          <field name="address_2" type="string" size="100" uuid="b2d4906b-67d0-4a47-b4ae-c9d2ea3cfb85"/>
+          <field name="city" type="string" size="100" uuid="be23ef9b-7c28-4419-8454-c0a99e24783d"/>
+          <field name="country" type="string" size="100" uuid="76c5c0e3-8bb3-4177-975c-c9989803339f"/>
+          <field name="credit_card" type="text" uuid="1ef3b99c-e660-49fc-a93a-b0c16b322c95"/>
+          <field name="day_phone" type="string" size="100" uuid="30ce561f-301e-4b51-b6ca-aaf1d7a77450"/>
+          <field name="email" type="string" size="100" required="true" uuid="72b2ccb0-1948-4235-bdc3-cdf49425b99c"/>
+          <field name="eve_phone" type="string" size="100" uuid="b3f613b6-3c20-412a-970f-3a95788d39b7"/>
+          <field name="mob_phone" type="string" size="100" uuid="c186af8c-c4b4-4e87-a3b8-e2dd8d5df66f"/>
+          <field name="name" type="string" size="50" required="true" uuid="037efe8e-cea5-4e4a-a604-60404008ec75"/>
+          <field name="password" type="string" size="50" required="true" uuid="c07f1486-53bc-4281-994a-51f36a44a9fa"/>
+          <field name="postal_code" type="string" size="100" uuid="fa126948-fdb6-406b-98ef-4248f407732a"/>
+          <field name="region" type="string" size="100" uuid="f7114953-7689-48cd-87d4-034ffcf847b9"/>
+          <index name="idx_customer_email" unique="true" uuid="93a14e46-03b4-4170-93c8-6ba4f500c038">
+            <index-field name="email" uuid="55a5303f-1f2c-469c-8a89-4cf92b918e51"/>
+          </index>
+          <index name="idx_customer_shipping_region_id" uuid="61714de7-7404-4a7a-b386-a5168b2fe31d">
+            <index-field name="shipping_region_id" uuid="6027e51a-939e-4c7b-b4be-d5817cc6f9ff"/>
+          </index>
+          <orm-attributes>
+            <attribute name="table">customer</attribute>
+          </orm-attributes>
+        </entity>
+      </region>
+    </region>
+    <association from="\Db\Entity\audit" to="\Db\Entity\orders" caption="Orders Audits" owner-alias="audits" inverse-alias="orders" many-owner="true" many-inverse="false" parent-required="true" uuid="62f26bba-3cb7-40d3-8a3b-061593fd7474">
+      <association-field from="order_id" to="order_id" uuid="a005eaad-9c83-4b25-a94d-892aff59c23f"/>
+    </association>
+    <association from="\Db\Entity\order_detail" to="\Db\Entity\orders" caption="Orders OrderDetails" owner-alias="orderDetails" inverse-alias="orders" many-owner="true" many-inverse="false" parent-required="true" uuid="b34571c5-30e6-46a2-9960-29d1add9bb4b">
+      <association-field from="order_id" to="order_id" uuid="e541da26-aac4-4511-9e82-14a6d56f01c4"/>
+    </association>
+    <association from="\Db\Entity\order_detail" to="\Db\Entity\product" caption="Product OrderDetail" owner-alias="orderDetail" inverse-alias="product" many-owner="true" many-inverse="false" parent-required="true" uuid="c8265d01-c44c-46fb-9e3e-4b417df2a0a1">
+      <association-field from="product_id" to="product_id" uuid="b33c6a04-31b9-4b69-aecc-f094c88547c0"/>
+    </association>
+    <association from="\Db\Entity\orders" to="\Db\Entity\customer" caption="Customer Order" owner-alias="order" inverse-alias="customer" many-owner="true" many-inverse="false" parent-required="true" uuid="deea9d92-2dd7-4514-84de-c59c3efd481d">
+      <association-field from="customer_id" to="customer_id" uuid="a41a9225-7c69-4461-9546-8f76de0a8f0e"/>
+    </association>
+    <association from="\Db\Entity\orders" to="\Db\Entity\shipping" caption="Shipping Order" owner-alias="order" inverse-alias="shipping" many-owner="true" many-inverse="false" parent-required="true" uuid="0b6d13c8-76ef-4c60-815a-f54b8799db11">
+      <association-field from="shipping_id" to="shipping_id" uuid="90fde136-d2bc-4427-baf7-83298f47a756"/>
+    </association>
+    <association from="\Db\Entity\orders" to="\Db\Entity\tax" caption="Tax Order" owner-alias="order" inverse-alias="tax" many-owner="true" many-inverse="false" parent-required="true" uuid="39e76166-ea19-4b61-82db-d7cd10e8cf02">
+      <association-field from="tax_id" to="tax_id" uuid="891bdd22-3b74-4110-965d-8c9d861e8bbc"/>
+    </association>
+    <association from="\Db\Entity\shipping" to="\Db\Entity\shipping_region" caption="ShippingRegion Shippings" owner-alias="shippings" inverse-alias="shippingRegion" many-owner="true" many-inverse="false" parent-required="true" uuid="01993a8c-a5c7-402f-ac73-c6ad2e74234e">
+      <association-field from="shipping_region_id" to="shipping_region_id" uuid="ec3eb7c0-d396-47e9-a01a-ca6018290465"/>
+    </association>
+    <association from="\Db\Entity\customer" to="\Db\Entity\shipping_region" caption="ShippingRegion Customers" owner-alias="customers" inverse-alias="shippingRegion" many-owner="true" many-inverse="false" parent-required="true" uuid="9947deba-d37a-49f1-8011-eb01a0e41d46">
+      <association-field from="shipping_region_id" to="shipping_region_id" uuid="edc2d547-c3c1-4a53-b10e-8e57ecb2b4cf"/>
+    </association>
+    <region namespace="\Db\Entity" caption="Cart" uuid="8512789a-b67e-4710-bdf7-24d5051fc76f">
+      <entity name="\Db\Entity\shopping_cart" local-name="shopping_cart" namespace="\Db\Entity" uuid="441982ba-a173-48e5-b897-e0ff7563a73f">
+        <field name="item_id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="7f1fb719-c8c7-45fb-b01c-4b81e25e29f5"/>
+        <field name="product_id" type="integer" required="true" uuid="02c81de4-d070-4e24-a95f-3f85e8084440"/>
+        <field name="added_on" type="datetime" required="true" uuid="17e48641-2d58-478f-b573-4e434a7a8a25"/>
+        <field name="attributes" type="text" required="true" uuid="b02ded18-23d1-4fb2-9f63-b10939e850eb"/>
+        <field name="buy_now" type="boolean" default="1" required="true" uuid="3a6406fe-d2ad-4095-9d71-c5a23622a230"/>
+        <field name="cart_id" type="string" size="32" required="true" uuid="1a4ad560-16de-4053-9408-91512e0a312d">
+          <orm-attributes>
+            <attribute name="fixed">true</attribute>
+          </orm-attributes>
+        </field>
+        <field name="quantity" type="integer" required="true" uuid="253dac4b-bfa6-4205-a151-4acc99774a0f"/>
+        <index name="idx_shopping_cart_cart_id" uuid="4405f384-2d49-4172-8980-3d12e8b57307">
+          <index-field name="cart_id" uuid="12be871a-39d4-4d45-9fe4-3c3fd96ead0b"/>
+        </index>
+        <orm-attributes>
+          <attribute name="table">shopping_cart</attribute>
+        </orm-attributes>
+      </entity>
+    </region>
+    <association from="\Db\Entity\shopping_cart" to="\Db\Entity\product" caption="Product ShoppingCarts" owner-alias="shoppingCarts" inverse-alias="product" many-owner="true" many-inverse="false" parent-required="true" uuid="b4a3433e-17e8-4ce8-95f5-28d97f3ce4ef">
+      <association-field from="product_id" to="product_id" uuid="792bf5ab-3a48-488b-bfc1-3b7f4fe8e0a5"/>
+    </association>
+    <region namespace="\Db\Entity\Db\Entity" local-namespace="Db\Entity" caption="etreedb" uuid="6d08ae47-5725-446f-9260-7acbfe11a843">
+      <comment caption="Author" description="Tom H Anderson&#10;API Skeletons&#10;contact@apiskeletons.com" uuid="9c2b6cbe-fc9e-4514-9c18-5eaa1330bbe1"/>
+      <comment caption="Fixture" uuid="f7eaef5e-89f6-423e-85a1-0a77ed5a7a00"/>
+      <comment caption="Problem / Unused" uuid="8fbd92ec-eb3e-4673-adae-5179992c78df"/>
+      <comment caption="Fixture Values" uuid="8056e8e1-42df-43fb-b19d-0f676cdf2d22"/>
+    </region>
+    <orm-attributes>
+      <attribute name="db-naming-strategy">default</attribute>
+      <attribute name="file-suffix">.dcm</attribute>
+      <attribute name="filename-format">with-namespace</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <association uuid="01993a8c-a5c7-402f-ac73-c6ad2e74234e" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="0b6d13c8-76ef-4c60-815a-f54b8799db11" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="39e76166-ea19-4b61-82db-d7cd10e8cf02" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="62f26bba-3cb7-40d3-8a3b-061593fd7474" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="76ab676e-8de9-4abe-9171-c6f93884a617" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="9947deba-d37a-49f1-8011-eb01a0e41d46" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="9eeffb8b-0c7f-4562-aa7a-57df567b8d25" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="b34571c5-30e6-46a2-9960-29d1add9bb4b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="b4a3433e-17e8-4ce8-95f5-28d97f3ce4ef" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="b7c05cb9-f439-4536-90b3-5a16983add92" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-1" color="#969696"/>
+    <association uuid="c8265d01-c44c-46fb-9e3e-4b417df2a0a1" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696" split="1"/>
+    <association uuid="d549c7fb-7015-4f7b-9b6f-3e89f20f9ed4" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <association uuid="deea9d92-2dd7-4514-84de-c59c3efd481d" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0" color="#969696"/>
+    <comment uuid="56463c51-c021-402f-9f39-102888855c06" bg-color="#FFFFE0" position-x="1503" position-y="32" size-x="0" size-x2="321" size-y="0" size-y2="1047" txt-color="#000000"/>
+    <comment uuid="5ac8feda-977e-4148-9f1b-7ac9790dbc0a" bg-color="#FFFFE0" position-x="1203" position-y="41" size-x="0" size-x2="287" size-y="10" size-y2="1037" txt-color="#000000"/>
+    <comment uuid="61675dbc-e92f-40e8-b50b-f1cab446eab3" bg-color="#FF0000" position-x="608" position-y="294" size-x="0" size-x2="168" size-y="0" size-y2="50" txt-color="#000000"/>
+    <comment uuid="8056e8e1-42df-43fb-b19d-0f676cdf2d22" bg-color="#A0ECDD" position-x="33" position-y="10" size-x="0" size-x2="69" size-y="0" size-y2="20" txt-color="#000000"/>
+    <comment uuid="8fbd92ec-eb3e-4673-adae-5179992c78df" bg-color="#FF0000" position-x="-14" position-y="37" size-x="0" size-x2="84" size-y="0" size-y2="20" txt-color="#000000"/>
+    <comment uuid="9247f27e-453b-45f7-a142-a4ca401c6b1c" bg-color="#FFFFE0" position-x="1840" position-y="33" size-x="0" size-x2="312" size-y="0" size-y2="486" txt-color="#000000"/>
+    <comment uuid="9c2b6cbe-fc9e-4514-9c18-5eaa1330bbe1" bg-color="#FFFFE0" position-x="-15" position-y="79" size-x="0" size-x2="192" size-y="7" size-y2="46" txt-color="#000000"/>
+    <comment uuid="c7a534bf-a888-4888-95f5-c5dea5be7033" bg-color="#FF0000" position-x="607" position-y="379" size-x="0" size-x2="171" size-y="0" size-y2="51" txt-color="#000000"/>
+    <comment uuid="f7eaef5e-89f6-423e-85a1-0a77ed5a7a00" bg-color="#0BC0A9" position-x="-16" position-y="9" size-x="0" size-x2="38" size-y="0" size-y2="20" txt-color="#000000"/>
+    <entity uuid="1abca499-cbde-4019-ae74-ce0ce515b4f7" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="134" position-y="100" size-x="0" size-x2="135" size-y="0" size-y2="73"/>
+    <entity uuid="224b1662-7da9-4b5d-ba2d-b85d7999e930" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="137" position-y="221" size-x="0" size-x2="112" size-y="0" size-y2="101"/>
+    <entity uuid="23f7a6ca-1ad5-43dd-93b5-17936f80197a" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="21" position-y="125" size-x="0" size-x2="104" size-y="0" size-y2="45"/>
+    <entity uuid="2b034cd5-d1d4-4ba2-bf57-d1b42c3aafba" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="641" position-y="70" size-x="0" size-x2="133" size-y="0" size-y2="115"/>
+    <entity uuid="401aa413-c442-40c6-a65d-eb408d13daeb" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="7" position-y="15" size-x="0" size-x2="131" size-y="0" size-y2="59"/>
+    <entity uuid="441982ba-a173-48e5-b897-e0ff7563a73f" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="45" position-y="66" size-x="0" size-x2="107" size-y="0" size-y2="115"/>
+    <entity uuid="4c98b2cc-c0e7-4f6e-a264-749271ab5400" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="666" position-y="18" size-x="0" size-x2="117" size-y="0" size-y2="73"/>
+    <entity uuid="5692ab04-2f6e-4fbd-8dce-d685a75dcaa0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="370" position-y="88" size-x="0" size-x2="131" size-y="0" size-y2="171"/>
+    <entity uuid="56c920a1-7156-46f0-9713-91af4dc73cb0" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="398" position-y="186" size-x="0" size-x2="147" size-y="0" size-y2="143"/>
+    <entity uuid="65d73ada-164d-412c-95a5-a0a8fae8f36b" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="15" position-y="29" size-x="0" size-x2="135" size-y="0" size-y2="227"/>
+    <entity uuid="8a5d4863-29e4-49d7-91f9-305b8e7509c5" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="666" position-y="178" size-x="0" size-x2="117" size-y="0" size-y2="59"/>
+    <entity uuid="b9d13ccb-8b38-4ad0-aed4-c6465af6431a" bg-color="#FFFFFF" hdr-color="#0BC0A9" position-x="2" position-y="15" size-x="0" size-x2="139" size-y="0" size-y2="45"/>
+    <entity uuid="c433a461-f5c7-46be-959a-b84ef778e48a" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="258" position-y="14" size-x="0" size-x2="135" size-y="0" size-y2="60"/>
+    <entity uuid="e185eeb0-7e7a-4730-bad3-433fed651a41" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="445" position-y="15" size-x="0" size-x2="111" size-y="0" size-y2="60"/>
+    <entity uuid="f33a894a-cc26-48e4-8867-eac2ee6ade70" bg-color="#FFFFFF" hdr-color="#0BC0A9" position-x="638" position-y="209" size-x="0" size-x2="141" size-y="0" size-y2="59"/>
+    <entity uuid="f78632ec-8109-4b15-8ac7-d77a5a5e6b32" bg-color="#FFFFFF" hdr-color="#D2D2D2" position-x="379" position-y="344" size-x="0" size-x2="112" size-y="0" size-y2="87"/>
+    <many-to-many-association uuid="602e99c8-1e6e-486c-858f-38c60117946a" color="#969696"/>
+    <many-to-many-association uuid="dd5eda78-4a48-4072-9cdf-17d364218b4a" color="#969696"/>
+    <module uuid="194584b8-e179-4137-9f57-33a46e1f23c6" bg-color="#E1EDF0" position-x="50" position-y="50" size-x="0" size-x2="2173" size-y="0" size-y2="1120"/>
+    <project uuid="9911a473-05ed-4450-a588-f40b6c4979b3" size-x="0" size-x2="2273" size-y="0" size-y2="1220"/>
+    <region uuid="214835f0-2ed9-43d0-a3fa-8733cde48ba4" bg-color="#E7F5FD" position-x="367" position-y="508" size-x="27" size-x2="808" size-y="8" size-y2="570"/>
+    <region uuid="6d08ae47-5725-446f-9260-7acbfe11a843" bg-color="#FEFCE8" position-x="47" position-y="52" size-x="30" size-x2="269" size-y="19" size-y2="137"/>
+    <region uuid="8512789a-b67e-4710-bdf7-24d5051fc76f" bg-color="#FEFCE8" position-x="19" position-y="212" size-x="0" size-x2="298" size-y="0" size-y2="263"/>
+    <region uuid="8eb0dd58-e6be-44ae-a1f2-8e9431d77cbe" bg-color="#EAE4F1" position-x="353" position-y="50" size-x="13" size-x2="822" size-y="17" size-y2="425"/>
+    <region uuid="cfa628cf-9d82-41ea-b118-661dd1ef49e8" bg-color="#FDF5F3" position-x="30" position-y="257" size-x="0" size-x2="179" size-y="23" size-y2="274"/>
+  </visual-data>
+</skipper>
